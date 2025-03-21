@@ -8,11 +8,13 @@ type Book = {
 };
 
 type BookListProps = {
-  books: Book[]; // Список книг
-  setBooks: React.Dispatch<React.SetStateAction<Book[]>>; // Функція для оновлення списку
+  books: Book[];
+  setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
+  addToReadingList: (book: Book) => void;
 };
 
-const BookList: React.FC<BookListProps> = ({ books, setBooks }) => {
+
+const BookList: React.FC<BookListProps> = ({ books, setBooks, addToReadingList }) => {
   const handleDelete = (id: number) => {
     fetch(`http://localhost:3001/books/${id}`, {
       method: "DELETE",
@@ -23,15 +25,51 @@ const BookList: React.FC<BookListProps> = ({ books, setBooks }) => {
       });
   };
 
+  const [searchInput, setSearchInput] = React.useState("");
+  const [searchTerm, setSearchTerm] = React.useState("");
+
   return (
     <div>
+
+      <div style={{ marginBottom: "16px" }}>
+        <input
+          type="text"
+          placeholder="🔍 Пошук за назвою або автором"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          style={{ padding: "8px", width: "60%", marginRight: "8px" }}
+        />
+        <button
+          onClick={() => setSearchTerm(searchInput)}
+          style={{ padding: "8px 16px" }}
+        >
+          Пошук
+        </button>
+        <button
+          onClick={() => {
+            setSearchInput("");
+            setSearchTerm("");
+          }}
+          style={{ padding: "8px 16px", marginLeft: "8px", backgroundColor: "#eee" }}
+        >
+          Скинути
+        </button>
+      </div>
+
       <h2>📚 Список книг</h2>
+
       <ul>
-        {books.map((book) => (
-          <li key={book.id}>
-            {book.title} - {book.author} ({book.year})
-            <button onClick={() => handleDelete(book.id)}>❌ Видалити</button>
-          </li>
+        {books
+          .filter((book) =>
+            book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            book.author.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+          .map((book) => (
+            <li key={book.id}>
+              {book.title} - {book.author} ({book.year})
+              <button onClick={() => handleDelete(book.id)}>❌ Видалити</button>
+              <button onClick={() => addToReadingList(book)}>📖 До списку читання</button>
+            </li>
         ))}
       </ul>
     </div>

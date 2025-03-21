@@ -1,51 +1,49 @@
 import React, { useState } from "react";
+import { Book } from "../App";
 
 type AddBookProps = {
-  onBookAdded: () => void;
+  books: Book[];
+  setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
 };
 
-const AddBook: React.FC<AddBookProps> = ({ onBookAdded }) => {
+const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [year, setYear] = useState<number | "">(""); // ✅ Початкове значення - порожнє
+  const [year, setYear] = useState<number | "">("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-  
-    if (year === "") {
-      alert("❌ Будь ласка, введіть рік!");
-      return;
-    }
-  
-    const validYear = Math.max(0, Number(year)); // ✅ Перетворюємо `year` у число перед перевіркою
-  
+
+    const newBook: Book = {
+      id: Date.now(),
+      title,
+      author,
+      year: Number(year),
+    };
+
     fetch("http://localhost:3001/books", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title,
-        author,
-        year: validYear, // ✅ Тепер це гарантовано число
-      }),
+      body: JSON.stringify(newBook),
     })
       .then((res) => res.json())
-      .then(() => {
-        // alert("✅ Книга додана!");
+      .then((data) => {
+        setBooks([...books, data]);
         setTitle("");
         setAuthor("");
-        setYear(""); // ✅ Очищаємо поле
-        onBookAdded();
+        setYear("");
+        // onBookAdded(); ← видалено
       });
   };
-  
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>➕ Додати книгу</h2>
+
+      <h3>➕ Додати книгу</h3>
 
       <input
         type="text"
-        placeholder="Назва книги"
+        placeholder="Назва"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         required
@@ -61,25 +59,26 @@ const AddBook: React.FC<AddBookProps> = ({ onBookAdded }) => {
 
       <input
         type="number"
-        placeholder="Рік видання"
+        placeholder="Рік"
         value={year}
         onChange={(e) => {
-          let inputYear = e.target.value;
-          if (inputYear.includes("-")) inputYear = inputYear.replace("-", "");
-
-          const numericYear = inputYear === "" ? "" : Math.max(0, parseInt(inputYear, 10) || 0);
-          setYear(numericYear);
+          const value = e.target.value;
+          // Забороняємо мінуси
+          if (!value.includes("-")) {
+            setYear(value === "" ? "" : Number(value));
+          }
         }}
         onKeyDown={(e) => {
           if (e.key === "-" || e.key === "e") {
-            e.preventDefault(); // 🔹 Блокуємо введення `-` та `e` (щоб уникнути експоненційного запису)
+            e.preventDefault(); // Блокуємо ввод "-" і "e"
           }
         }}
         required
+        min={0}
       />
 
+      <button type="submit">💾 Зберегти</button>
 
-      <button type="submit">Додати книгу</button>
     </form>
   );
 };
