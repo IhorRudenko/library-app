@@ -8,6 +8,10 @@
   --text-color: #ffffff;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -36,7 +40,7 @@ button {
 }
 
 .container {
-  max-width: 1920px;
+  max-width: 1680px;
   margin: 0 auto;
   padding: 10px;
 }
@@ -50,17 +54,19 @@ button {
 .app__title {
   font-size: 50px;
   margin: 20px 0;
+  color: #27367b;
 }
 
 .header {
   min-height: 50px;
   width: 100%;
   height: auto;
-  background-color: #0238;
+  background-color: #27367b;
 }
 
 .logo {
   width: 50px;
+  height: 50px;
   flex: 0 0 50px;
 }
 
@@ -71,15 +77,78 @@ button {
   gap: 20px;
 }
 
-.theme__btn {
+/* .theme__btn {
   width: 50px;
+  height: 50px;
   flex: 0 0 50px;
   padding: 0;
+  overflow: hidden;
+  border-radius: 11px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .2s ease-in-out;
 }
 
+.theme__btn:hover {
+  background-color: yellow;
+  transition: background-color .2s ease-in-out;
+}*/
+
 .theme__icon {
-  width: 100%;
+  width: 30px;
+  height: 30px;
   max-width: 100%;
+} 
+
+
+.theme__btn  {
+  position: relative;
+  display: block;
+  width: 100px;
+  height: 50px;
+  border-radius: 160px;
+  background: #d5d5d5;
+  cursor: pointer;
+  box-shadow: inset 0 8px 60px rgba(0,0,0,0.1),
+              inset 0 8px 8px rgba(0,0,0,0.1),
+              inset 0 -4px 4px rgba(0,0,0,0.1);
+
+}
+
+.theme__btn.active {
+  background: #d5d5d5;
+  box-shadow: inset 0 2px 60px rgba(0,0,0,0.1),
+              inset 0 2px 8px rgba(0,0,0,0.1),
+              inset 0 -4px 4px rgba(0,0,0,0.05);
+}
+
+.theme__btn .indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(to bottom, #444,#222);
+  border-radius: 50%;
+  transform: scale(0.9);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5),
+              inset 0 4px 4px rgba(255,255,255,0.2),
+              inset 0 -4px 4px rgba(255,255,255,0.2);
+  transition: 0.5s;
+}
+
+.theme__btn.active .indicator {
+  left: 50px;
+  background: linear-gradient(to bottom, #eaeaea, #f9f9f9);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1),
+              inset 0 4px 4px rgba(255,255,255,1),
+              inset 0 -4px 4px rgba(255,255,255,1);
+  transition: 0.5s;
 }
 
 .tabs {
@@ -88,11 +157,12 @@ button {
 }
 
 .tabs__btn {
-  font-style: 25px;
+  font-size: 18px;
   font-weight: 700;
   border: none;
-  background-color: orange;
   padding: 15px 25px;
+  color: #27367b;
+  transition: background-color .2s ease-in-out;
 }
 
 .tabs__btn--left {

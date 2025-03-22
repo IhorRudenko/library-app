@@ -84,12 +84,17 @@ const App: React.FC = () => {
             <div className="header__inner">
               <img className="logo" src="/images/logo.png" alt="Logo"/>
 
-              <button className="theme__btn" onClick={toggleTheme}>
-                <img
-                  src={theme === "light" ? "/images/icon-dark.png" : "/images/icon-light.png"}
-                  alt="theme icon"
-                  className="theme__icon"
-                />
+              <button
+                className={`theme__btn ${theme === "dark" ? "active" : ""}`}
+                onClick={toggleTheme}
+              >
+                  <i className="indicator">
+                    <img
+                      src={theme === "light" ? "/images/moon.png" : "/images/sun.png"}
+                      alt="theme icon"
+                      className="theme__icon"
+                    />
+                  </i>
               </button>
             </div>
           </div>
@@ -103,21 +108,21 @@ const App: React.FC = () => {
               <button className="tabs__btn tabs__btn--left"
                 onClick={() => setActiveTab("all")}
                 style={{
-                  backgroundColor: activeTab === "all" ? "rgb(97, 190, 20)" : "#d2d2d2",
-                  color: activeTab === "all" ? "#fff" : "#000",
+                  backgroundColor: activeTab === "all" ? "#0054f5" : "#d2d2d2",
+                  color: activeTab === "all" ? "#fff" : "#1445b8",
                 }}
               >
-                📚 Gesamte Liste 
+                Gesamte Liste 
               </button>
     
               <button className="tabs__btn tabs__btn--right"
                 onClick={() => setActiveTab("readingList")}
                 style={{
-                  backgroundColor: activeTab === "readingList" ? "rgb(97, 190, 20)" : "#d2d2d2",
-                  color: activeTab === "all" ? "#000" : "#fff",
+                  backgroundColor: activeTab === "readingList" ? "#0054f5" : "#d2d2d2",
+                  color: activeTab === "all" ? "#1445b8" : "#fff",
                 }}
               >
-                📖 Favoriten zum Lesen
+                Favoriten zum Lesen
               </button>
             </div>
     

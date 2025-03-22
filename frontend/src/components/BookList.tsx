@@ -32,22 +32,23 @@ const BookList: React.FC<BookListProps> = ({ books, setBooks, addToReadingList }
   return (
     <div>
 
-      <div style={{ marginBottom: "16px" }}>
-        <input
+      <div className="search__block" style={{ marginBottom: "16px" }}>
+        <input className="search__input"
           type="text"
           placeholder="🔍 Пошук за назвою або автором"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           style={{ padding: "8px", width: "60%", marginRight: "8px" }}
         />
-        <button
+
+        <button className="search__btn search__btn--find"
           onClick={() => setSearchTerm(searchInput)}
           style={{ padding: "8px 16px" }}
         >
           Пошук
         </button>
         
-        <button
+        <button className="search__btn search__btn--reset"
           onClick={() => {
             setSearchInput("");
             setSearchTerm("");
@@ -58,9 +59,9 @@ const BookList: React.FC<BookListProps> = ({ books, setBooks, addToReadingList }
         </button>
       </div>
 
-      <h2>📚 Список книг</h2>
+      <h2 className="list__title">📚 Список книг</h2>
 
-      <ul>
+      <ul className="list__body">
         {books
           .filter((book) => {
             const trimmedTerm = searchTerm.trim().toLowerCase();
