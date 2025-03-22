@@ -60,10 +60,14 @@ const BookList: React.FC<BookListProps> = ({ books, setBooks, addToReadingList }
 
       <ul>
         {books
-          .filter((book) =>
-            book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            book.author.toLowerCase().includes(searchTerm.toLowerCase())
-          )
+          .filter((book) => {
+            const trimmedTerm = searchTerm.trim().toLowerCase();
+            return (
+              book.title.toLowerCase().includes(trimmedTerm) ||
+              book.author.toLowerCase().includes(trimmedTerm)
+            );
+          })
+
           .map((book) => (
             <li key={book.id}>
               {book.title} - {book.author} ({book.year})
