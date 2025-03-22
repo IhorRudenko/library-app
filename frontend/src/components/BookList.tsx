@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/BookList.css";
 
 type Book = {
   id: number;
@@ -45,6 +46,7 @@ const BookList: React.FC<BookListProps> = ({ books, setBooks, addToReadingList }
         >
           Пошук
         </button>
+        
         <button
           onClick={() => {
             setSearchInput("");
@@ -69,7 +71,7 @@ const BookList: React.FC<BookListProps> = ({ books, setBooks, addToReadingList }
           })
 
           .map((book) => (
-            <li key={book.id}>
+            <li className="book-item" key={book.id}>
               {book.title} - {book.author} ({book.year})
               <button onClick={() => handleDelete(book.id)}>❌ Видалити</button>
               <button onClick={() => addToReadingList(book)}>📖 До списку читання</button>

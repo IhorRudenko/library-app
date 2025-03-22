@@ -1,13 +1,105 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+
+[data-theme='dark'] {
+  --bg-color: #1e1e1e;
+  --text-color: #ffffff;
+}
+
 body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+    font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  overflow: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.wrapper {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: calc(100vh - 60px);
+}
+
+.app__title {
+  font-size: 50px;
+  margin: 20px 0;
+}
+
+.header {
+  min-height: 50px;
+  width: 100%;
+  height: auto;
+  background-color: #0238;
+}
+
+.logo {
+  width: 50px;
+  flex: 0 0 50px;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.theme__btn {
+  width: 50px;
+  flex: 0 0 50px;
+  padding: 0;
+}
+
+.theme__icon {
+  width: 100%;
+  max-width: 100%;
+}
+
+.tabs {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tabs__btn {
+  font-style: 25px;
+  font-weight: 700;
+  border: none;
+  background-color: orange;
+  padding: 15px 25px;
+}
+
+.tabs__btn--left {
+  border-radius: 20px 0 0 20px ;
+}
+
+.tabs__btn--right {
+  border-radius: 0 20px 20px 0;
+
 }

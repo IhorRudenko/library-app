@@ -55,58 +55,95 @@ const App: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<"all" | "readingList">("all");
   
+  // -- theme ---------------------------------------------------------------------------
+
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "light";
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === "light" ? "dark" : "light"));
+  };
+
+  // -- //theme -------------------------------------------------------------------------------
+
+
+
+
+  
 
   return (
     <div className="App">
-      <h1>📚 Бібліотека</h1>
-  
-      {/* Вкладки */}
-      <div style={{ marginBottom: "20px" }}>
-        <button
-          onClick={() => setActiveTab("all")}
-          style={{
-            padding: "10px 20px",
-            backgroundColor: activeTab === "all" ? "#ddd" : "#f5f5f5",
-            border: "1px solid #ccc",
-            marginRight: "10px",
-            cursor: "pointer"
-          }}
-        >
-          📚 Бібліотека
-        </button>
+      <header className="header">
+          <div className="container">
+            <div className="header__inner">
+              <img className="logo" src="/images/logo.png" alt="Logo"/>
 
-        <button
-          onClick={() => setActiveTab("readingList")}
-          style={{
-            padding: "10px 20px",
-            backgroundColor: activeTab === "readingList" ? "#ddd" : "#f5f5f5",
-            border: "1px solid #ccc",
-            cursor: "pointer"
-          }}
-        >
-          📖 Список для читання
-        </button>
+              <button className="theme__btn" onClick={toggleTheme}>
+                <img
+                  src={theme === "light" ? "/images/icon-dark.png" : "/images/icon-light.png"}
+                  alt="theme icon"
+                  className="theme__icon"
+                />
+              </button>
+            </div>
+          </div>
+      </header>
+      
+      <div className="wrapper">
+        <div className="container">
+          <h1 className="app__title">Bibliothek</h1>
+          
+            <div className="tabs" style={{ marginBottom: "20px" }}>
+              <button className="tabs__btn tabs__btn--left"
+                onClick={() => setActiveTab("all")}
+                style={{
+                  backgroundColor: activeTab === "all" ? "rgb(97, 190, 20)" : "#d2d2d2",
+                  color: activeTab === "all" ? "#fff" : "#000",
+                }}
+              >
+                📚 Gesamte Liste 
+              </button>
+    
+              <button className="tabs__btn tabs__btn--right"
+                onClick={() => setActiveTab("readingList")}
+                style={{
+                  backgroundColor: activeTab === "readingList" ? "rgb(97, 190, 20)" : "#d2d2d2",
+                  color: activeTab === "all" ? "#000" : "#fff",
+                }}
+              >
+                📖 Favoriten zum Lesen
+              </button>
+            </div>
+    
+            {/* Умовне відображення вкладок */}
+            {activeTab === "all" && (
+              <>
+                <AddBook books={books} setBooks={setBooks} />
+                <BookList
+                  books={books}
+                  setBooks={setBooks}
+                  addToReadingList={addToReadingList}
+                />
+              </>
+            )}
+    
+            {activeTab === "readingList" && (
+              <ReadingList
+                readingList={readingList}
+                toggleReadStatus={toggleReadStatus}
+                removeFromReadingList={removeFromReadingList}
+              />
+            )}
+        </div>
       </div>
-  
-      {/* Умовне відображення вкладок */}
-      {activeTab === "all" && (
-        <>
-          <AddBook books={books} setBooks={setBooks} />
-          <BookList
-            books={books}
-            setBooks={setBooks}
-            addToReadingList={addToReadingList}
-          />
-        </>
-      )}
-  
-      {activeTab === "readingList" && (
-        <ReadingList
-          readingList={readingList}
-          toggleReadStatus={toggleReadStatus}
-          removeFromReadingList={removeFromReadingList}
-        />
-      )}
+      
+      
     </div>
   );
   
