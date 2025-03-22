@@ -12,12 +12,6 @@
     "year": 1960
   },
   {
-    "id": 3,
-    "title": "The Great Gatsby",
-    "author": "F. Scott Fitzgerald",
-    "year": 1925
-  },
-  {
     "id": 4,
     "title": "Pride and Prejudice",
     "author": "Jane Austen",
@@ -70,12 +64,6 @@
     "title": "Animal Farm",
     "author": "George Orwell",
     "year": 1945
-  },
-  {
-    "id": 13,
-    "title": "Wuthering Heights",
-    "author": "Emily Brontë",
-    "year": 1847
   },
   {
     "id": 14,
@@ -172,47 +160,5 @@
     "title": "The Shining",
     "author": "Stephen King",
     "year": 1977
-  },
-  {
-    "id": 1742599100186,
-    "title": "sfafaafaf",
-    "author": "afawfawf",
-    "year": 523523
-  },
-  {
-    "id": 1742599592948,
-    "title": "ascasc",
-    "author": "acasca",
-    "year": 3445235
-  },
-  {
-    "id": 1742599616357,
-    "title": "llllllllll",
-    "author": "uuuuuuu",
-    "year": 655555
-  },
-  {
-    "id": 1742599682287,
-    "title": "qwreryty",
-    "author": "mvncxv",
-    "year": 999999
-  },
-  {
-    "id": 1742600638088,
-    "title": "4tyyyy",
-    "author": "er4t343t",
-    "year": 34
-  },
-  {
-    "id": 1742600657963,
-    "title": "acascac",
-    "author": "ascascac",
-    "year": 2121
-  },
-  {
-    "id": 1742654726728,
-    "title": "wqwdwqd",
-    "author": "qwdqwdq",
-    "year": 3242434
   }
 ]

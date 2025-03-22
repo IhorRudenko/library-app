@@ -1,4 +1,14 @@
-.book-item {
+.list__body {
+   display: flex;
+   flex-direction: column;
+   /* border: 3px solid #d1d1d1; */
+   border: 3px solid orange;
+   border-radius: 10px;
+   padding: 50px 30px;
+   position: relative;
+}
+
+.list__item {
    padding: 12px;
    border-bottom: 1px solid #ccc;
    display: flex;
@@ -6,6 +16,15 @@
    align-items: center;
 }
 
-.book-item button {
+.list__item button {
 margin-left: 10px;
+}
+
+.list__deco-img {
+   position: absolute;
+   top: 0;
+   right: 0;
+   width: 80px;
+   top: -35px;
+   right: 200px;
 }

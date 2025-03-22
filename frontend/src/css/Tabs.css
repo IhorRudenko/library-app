@@ -1,0 +1,22 @@
+.tabs {
+   display: flex;
+   justify-content: flex-end;
+ }
+ 
+ .tabs__btn {
+   font-size: 18px;
+   font-weight: 700;
+   border: none;
+   padding: 15px 25px;
+   color: #27367b;
+   transition: background-color .2s ease-in-out;
+ }
+ 
+ .tabs__btn--left {
+   border-radius: 20px 0 0 20px ;
+ }
+ 
+ .tabs__btn--right {
+   border-radius: 0 20px 20px 0;
+ 
+ }

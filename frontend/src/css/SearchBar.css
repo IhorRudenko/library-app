@@ -1,0 +1,27 @@
+.search__block {
+   display: flex;
+   align-items: center;
+   gap: 15px;
+   flex-wrap: wrap;
+}
+
+.search__inner {
+   display: flex;
+   align-items: center;
+   gap: 15px;
+   width: 100%;
+}
+
+.search__input {
+   width: 100%;
+}
+
+.search__reset {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+}
+
+

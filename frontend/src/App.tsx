@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import BookList from "./components/BookList";
+import Tabs from "./components/Tabs";
 import AddBook from "./components/AddBook";
+import SearchBar from "./components/SearchBar";
+import BookList from "./components/BookList";
 import ReadingList from "./components/ReadingList";
+
 
 export type Book = {
   id: number;
@@ -54,6 +57,9 @@ const App: React.FC = () => {
   };
 
   const [activeTab, setActiveTab] = useState<"all" | "readingList">("all");
+
+  const [searchInput, setSearchInput] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   
   // -- theme ---------------------------------------------------------------------------
 
@@ -102,49 +108,45 @@ const App: React.FC = () => {
       
       <div className="wrapper">
         <div className="container">
+
           <h1 className="app__title">Bibliothek</h1>
           
-            <div className="tabs" style={{ marginBottom: "20px" }}>
-              <button className="tabs__btn tabs__btn--left"
-                onClick={() => setActiveTab("all")}
-                style={{
-                  backgroundColor: activeTab === "all" ? "#0054f5" : "#d2d2d2",
-                  color: activeTab === "all" ? "#fff" : "#1445b8",
-                }}
-              >
-                Gesamte Liste 
-              </button>
+          <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
     
-              <button className="tabs__btn tabs__btn--right"
-                onClick={() => setActiveTab("readingList")}
-                style={{
-                  backgroundColor: activeTab === "readingList" ? "#0054f5" : "#d2d2d2",
-                  color: activeTab === "all" ? "#1445b8" : "#fff",
-                }}
-              >
-                Favoriten zum Lesen
-              </button>
-            </div>
-    
-            {/* Умовне відображення вкладок */}
-            {activeTab === "all" && (
-              <>
+          {/* Умовне відображення вкладок */}
+          {activeTab === "all" && (
+            <>
+              <div className="main">
+
                 <AddBook books={books} setBooks={setBooks} />
+            
+                <h3 className="search-book__title h3-title">Suche aus der Bücherliste</h3>
+
+                <SearchBar
+                  searchInput={searchInput}
+                  setSearchInput={setSearchInput}
+                  setSearchTerm={setSearchTerm}
+                />
+
+                <h2 className="list__title">Bücherliste</h2>
+
                 <BookList
                   books={books}
                   setBooks={setBooks}
                   addToReadingList={addToReadingList}
+                  searchTerm={searchTerm}
                 />
-              </>
-            )}
+              </div>
+            </>
+          )}
     
-            {activeTab === "readingList" && (
-              <ReadingList
-                readingList={readingList}
-                toggleReadStatus={toggleReadStatus}
-                removeFromReadingList={removeFromReadingList}
-              />
-            )}
+          {activeTab === "readingList" && (
+            <ReadingList
+              readingList={readingList}
+              toggleReadStatus={toggleReadStatus}
+              removeFromReadingList={removeFromReadingList}
+            />
+          )}
         </div>
       </div>
       

@@ -77,51 +77,31 @@ button {
   gap: 20px;
 }
 
-/* .theme__btn {
-  width: 50px;
-  height: 50px;
-  flex: 0 0 50px;
-  padding: 0;
-  overflow: hidden;
-  border-radius: 11px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color .2s ease-in-out;
-}
-
-.theme__btn:hover {
-  background-color: yellow;
-  transition: background-color .2s ease-in-out;
-}*/
-
 .theme__icon {
   width: 30px;
   height: 30px;
   max-width: 100%;
 } 
 
-
-.theme__btn  {
+.theme__btn {
   position: relative;
   display: block;
   width: 100px;
   height: 50px;
   border-radius: 160px;
-  background: #d5d5d5;
+  background: #d2d2d2;
   cursor: pointer;
-  box-shadow: inset 0 8px 60px rgba(0,0,0,0.1),
+  /* box-shadow: inset 0 8px 60px rgba(0,0,0,0.1),
               inset 0 8px 8px rgba(0,0,0,0.1),
-              inset 0 -4px 4px rgba(0,0,0,0.1);
+              inset 0 -4px 4px rgba(0,0,0,0.1); */
 
 }
 
 .theme__btn.active {
-  background: #d5d5d5;
-  box-shadow: inset 0 2px 60px rgba(0,0,0,0.1),
+  background: #d2d2d2;
+  /* box-shadow: inset 0 2px 60px rgba(0,0,0,0.1),
               inset 0 2px 8px rgba(0,0,0,0.1),
-              inset 0 -4px 4px rgba(0,0,0,0.05);
+              inset 0 -4px 4px rgba(0,0,0,0.05); */
 }
 
 .theme__btn .indicator {
@@ -136,9 +116,9 @@ button {
   background: linear-gradient(to bottom, #444,#222);
   border-radius: 50%;
   transform: scale(0.9);
-  box-shadow: 0 8px 40px rgba(0,0,0,0.5),
+  /* box-shadow: 0 8px 40px rgba(0,0,0,0.5),
               inset 0 4px 4px rgba(255,255,255,0.2),
-              inset 0 -4px 4px rgba(255,255,255,0.2);
+              inset 0 -4px 4px rgba(255,255,255,0.2); */
   transition: 0.5s;
 }
 
@@ -151,25 +131,62 @@ button {
   transition: 0.5s;
 }
 
-.tabs {
+.btn {
+  height: 50px;
+  border-radius: 10px;
   display: flex;
-  justify-content: flex-end;
-}
-
-.tabs__btn {
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
   font-size: 18px;
   font-weight: 700;
-  border: none;
-  padding: 15px 25px;
-  color: #27367b;
+  color: #1445b8;
+  background-color: #DADADA;
   transition: background-color .2s ease-in-out;
 }
 
-.tabs__btn--left {
-  border-radius: 20px 0 0 20px ;
+.btn:hover {
+  background-color: #c6c6c6;
+  transition: background-color .2s ease-in-out;
+
 }
 
-.tabs__btn--right {
-  border-radius: 0 20px 20px 0;
 
+.btn-accent {
+  background-color: #0054f5;
+  color: #fff;
+  transition: background-color .2s ease-in-out, 
+              color .2s ease-in-out;
+}
+
+.btn-accent:hover {
+  background-color: #003fb8;
+  color: #fff;
+}
+
+.h3-title {
+  font-size: 20px;
+  margin: 20px 0 15px;
+  color: #27367b; 
+}
+
+.list__title {
+  font-size: 35px;
+  font-weight: 700;
+  color: #27367b;
+}
+
+.input {
+  height: 50px; 
+   padding: 10px 15px;
+   font-size: 16px;
+   /* border: 2px solid #888; */
+   border: 3px solid #d1d1d1;
+   border-radius: 10px;
+}
+
+input:focus {
+  outline: none;
+  /* border: 3px solid #0054f5; */
+  border: 3px solid orange;
 }

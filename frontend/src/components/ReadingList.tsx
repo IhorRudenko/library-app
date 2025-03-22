@@ -24,16 +24,20 @@ const ReadingList: React.FC<ReadingListProps> = ({
       <h2>📚 Мій список для читання</h2>
       <ul>
         {readingList.map(book => (
-          <li className="book-item" key={book.id}>
-            <span style={{ textDecoration: book.read ? "line-through" : "none" }}>
-              {book.title} — {book.author} ({book.year})
-            </span>
+          <li className="list__item" key={book.id}>
+            <div className="list__item-inner">
+              <span style={{ textDecoration: book.read ? "line-through" : "none" }}>
+                {book.title} — {book.author} ({book.year})
+              </span>
+            </div>
 
-            <button onClick={() => toggleReadStatus(book.id)}>
-              {book.read ? "📘 Прочитано" : "📖 Ще не читано"}
-            </button>
-            
-            <button onClick={() => removeFromReadingList(book.id)}>🗑 Видалити</button>
+            <div className="list__item-controls">
+              <button onClick={() => toggleReadStatus(book.id)}>
+                {book.read ? "📘 Прочитано" : "📖 Ще не читано"}
+              </button>
+              
+              <button onClick={() => removeFromReadingList(book.id)}>🗑 Видалити</button>
+            </div>
           </li>
         ))}
       </ul>

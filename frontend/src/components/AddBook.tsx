@@ -41,11 +41,11 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
   return (
     <div className="add-book__block" onSubmit={handleSubmit}>
 
-      <h3 className="add-book__title">Додати книгу</h3>
+      <h3 className="add-book__title h3-title">Ein Buch zur Bibliothek hinzufügen</h3>
 
       <form className="add-book__form">
 
-        <input className="add-book__input add-book__input--name"
+        <input className="add-book__input add-book__input--name input"
           type="text"
           placeholder="Name"
           value={title}
@@ -53,7 +53,7 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
           required
         />
 
-        <input className="add-book__input add-book__input--author"
+        <input className="add-book__input add-book__input--author input"
           type="text"
           placeholder="Autor"
           value={author}
@@ -61,7 +61,7 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
           required
         />
 
-        <input className="add-book__input add-book__input--year"
+        <input className="add-book__input add-book__input--year input"
           type="number"
           placeholder="Jahr"
           value={year}
@@ -81,7 +81,7 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
           min={0}
         />
 
-        <button className="add-book__btn" type="submit">Speichern</button>
+        <button className="add-book__btn btn btn-accent" type="submit">Speichern</button>
       </form>
 
     </div>
