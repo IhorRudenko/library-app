@@ -4,8 +4,9 @@ import bodyParser from "body-parser";
 import fs from "fs";
 
 const app = express();
+app.use(express.json({ limit: "15mb" }));
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "5mb" }));
 
 const booksFile = "books.json"; // Файл для збереження книг
 

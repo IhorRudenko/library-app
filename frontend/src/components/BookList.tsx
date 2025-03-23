@@ -73,14 +73,14 @@ const BookList: React.FC<BookListProps> = ({
               </div>
 
               <div className="list__item-poster">
-                <img
-                  className="list__item-img"
-                  src={book.image || "/images/books/placeholder.png"}
-                  onError={(e) => {
-                    e.currentTarget.src = "/images/books/placeholder.png";
-                  }}
-                  alt={book.title}
-                />
+              <img
+                className="list__item-img"
+                src={book.image || "/images/books/placeholder.png"}
+                onError={(e) => {
+                  e.currentTarget.src = "/images/books/placeholder.png";
+                }}
+                alt={book.title}
+              />
               </div>
 
               <div className="list__item-controls">

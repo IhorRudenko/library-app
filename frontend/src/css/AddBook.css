@@ -16,3 +16,14 @@ form.add-book__form {
    grid-column: span 3;
    resize: vertical;
 }
+
+.image-upload-label {
+   cursor: pointer;
+}
+
+.image-upload-label.uploaded {
+   background-color: #b4ffaf;
+   border: 2px solid #2ecc71;
+   color: #1b9950;
+   font-weight: bold;
+ }

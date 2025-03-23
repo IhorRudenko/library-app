@@ -15,19 +15,43 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+  
+    if (imageFile) {
+      const reader = new FileReader();
+  
+      reader.onloadend = () => {
+        const base64Image = reader.result as string;
+        console.log("📸 Base64 готовий:", base64Image.slice(0, 50)); // обрізано для консолі
+  
+        saveBook(base64Image);
+      };
+  
+      reader.onerror = (err) => {
+        console.error("❌ Помилка при зчитуванні зображення:", err);
+        saveBook(""); // fallback
+      };
+  
+      reader.readAsDataURL(imageFile); // ⬅️ запускаємо
+    } else {
+      saveBook(""); // без зображення
+    }
+  };
+  
+  const saveBook = (imageData: string) => {
     const newBook: Book = {
       id: Date.now(),
       title,
       author,
       year: Number(year),
       description,
-      image,
+      image: imageData,
     };
-
+  
     fetch("http://localhost:3001/books", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(newBook),
     })
       .then((res) => res.json())
@@ -37,15 +61,24 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
         setAuthor("");
         setYear("");
         setDescription("");
-        setImage("");
+        setImageFile(null);
+        console.log("✅ Книга додана:", data);
+      })
+      .catch((err) => {
+        console.error("❌ Помилка при додаванні:", err);
       });
   };
+  
+  
 
   const [description, setDescription] = useState("");
 
   const [image, setImage] = useState("");
 
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
+
+  // -----------------------------------------------------------------
 
 
 
@@ -92,9 +125,28 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
           }}
           required
           min={0}
-        />       
+        /> 
 
-        <button className="add-book__btn btn btn-accent" type="submit">Speichern</button>
+        <label
+          htmlFor="imageUpload"
+          className={`image-upload-label btn ${imageFile ? "uploaded" : ""}`}
+        >
+          {imageFile ? "Bild hochgeladen" : "Bild hochladen"}
+          <input
+            id="imageUpload"
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              if (e.target.files && e.target.files[0]) {
+                setImageFile(e.target.files[0]);
+              }
+            }}
+            style={{ display: "none" }}
+          />
+        </label>
+    
+
+        {/* <button className="add-book__btn btn btn-accent" type="submit">Speichern</button> */}
 
         <textarea className="add-book__textarea input" 
           value={description}
@@ -102,13 +154,24 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
           placeholder="Beschreibung (optional)"
         />
 
-        <input
-          type="text"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-          placeholder="Bild-URL oder Pfad"
-          required
-        />
+        <button className="add-book__btn btn btn-accent" type="submit">Speichern</button>
+
+
+        {/* <label htmlFor="imageUpload" className="image-upload-label btn">
+          Bild hochladen
+          <input
+            id="imageUpload"
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              if (e.target.files && e.target.files[0]) {
+                setImageFile(e.target.files[0]);
+              }
+            }}
+            style={{ display: "none" }}
+          />
+        </label> */}
+        
       </form>
 
     </div>
