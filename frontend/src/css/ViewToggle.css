@@ -62,9 +62,10 @@
 }
 
 /* Стиль для карток */
-.card-view {
+.list__body.card-view {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 16px;
+  grid-row: auto;
 }
 

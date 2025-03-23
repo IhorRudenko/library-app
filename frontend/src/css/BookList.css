@@ -1,25 +1,34 @@
 .list__body {
    display: flex;
    flex-direction: column;
-   /* border: 3px solid #d1d1d1; */
    border: 3px solid orange;
    border-radius: 10px;
-   padding: 50px 30px;
+   padding: 50px 15px;
    position: relative;
+   min-height: 145px;
+   z-index: 1;
 }
 
 .list__item {
+   position: relative;
+   display: grid;
+   grid-template-columns: 1fr 1fr 235px;
+   /* grid-row: 1; */
    padding: 8px 10px;
-   display: flex;
    justify-content: space-between;
-   align-items: center;
+   align-items: start;
+   background-color: #fff;
    border: 1px solid #ccc;
    border-radius: 8px;
    transition: all 0.2s ease-in-out;
    cursor: pointer;
-   gap: 10px;
- }
+   gap: 50px;
+}
 
+.list__item:nth-child(even) {
+   background-color: #f2f2f2; /* або будь-який колір */
+}
+ 
 .list__deco-img {
    position: absolute;
    top: 0;
@@ -30,6 +39,7 @@
 }
 
 .list__item-btn {
+   white-space: nowrap;
    display: flex;
    align-items: center;
    justify-content: center;
@@ -57,9 +67,8 @@
 }
  
 .list__item-controls {
-display: flex;
-justify-content: space-between;
-gap: 10px;
+   display: flex;
+   gap: 10px;
 }
 
 .list__body.card-view .list__item {
@@ -83,10 +92,6 @@ flex-direction: column;
 
 .list__item-poster {
   display: none;
-}
-
-.list__item-img {
-   
 }
 
 /* -------------------------------------------- */
@@ -134,4 +139,43 @@ flex-direction: column;
    border-color: #0054f5;
    outline: none;
 }
+ /* ---------------------------------------------- */
+
+ .book-description {
+  margin: 0 0 0 auto;  
+  grid-column: 2;
+  padding: 5px 0;
+ }
+
+ .list__item-inner {
+   grid-column: 1;
+   padding: 5px 0;
+   font-weight: 700;
+ }
+
+ .list__item-controls {
+   grid-column: 3;
+ }
+
+ .list__negativ {
+   position: absolute;
+   font-size: 26px;
+   color: red;
+   top: 45px;
+   left: 50%;
+   transform: translateX(-50%);
+   margin: 0;
+}
+
+
+.list__negativ {
+   display: none;
+   text-align: center;
+   padding: 10px;
+   font-style: italic;
+   color: #888;
+ }
  
+ .list__negativ.active {
+   display: block;
+ }
