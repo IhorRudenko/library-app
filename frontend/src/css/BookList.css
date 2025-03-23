@@ -12,17 +12,23 @@
 .list__item {
    position: relative;
    display: grid;
-   grid-template-columns: 1fr 1fr 235px;
-   /* grid-row: 1; */
-   padding: 8px 10px;
+   grid-template-columns: 1fr 235px;
+   grid-template-rows: 35px;
+   padding: 10px 10px;
    justify-content: space-between;
-   align-items: start;
+   align-items: center;
    background-color: #fff;
    border: 1px solid #ccc;
    border-radius: 8px;
    transition: all 0.2s ease-in-out;
    cursor: pointer;
-   gap: 50px;
+   gap: 15px 50px;
+   height: 55px;
+}
+
+.list__item.active {
+   grid-template-rows: 35px 1fr;
+   height: auto;
 }
 
 .list__item:nth-child(even) {
@@ -45,12 +51,13 @@
    justify-content: center;
    gap: 8px;
    background-color: rgb(90, 90, 90);
-   padding: 6px 12px;
+   padding: 0 12px;
    border: none;
    border-radius: 8px;
    color: #fff;
    cursor: pointer;
    transition: background-color 0.2s ease-in-out;
+   height: 35px;
 }
 
 .list__item-star,
@@ -141,23 +148,26 @@ flex-direction: column;
 }
  /* ---------------------------------------------- */
 
- .book-description {
-  margin: 0 0 0 auto;  
+.book-description {
+  margin: 0;
   grid-column: 2;
   padding: 5px 0;
- }
+  grid-column: span 2;
+  grid-column: 1;
+  width: 100%;
+}
 
- .list__item-inner {
+.list__item-inner {
    grid-column: 1;
    padding: 5px 0;
    font-weight: 700;
- }
+}
 
- .list__item-controls {
-   grid-column: 3;
- }
+.list__item-controls {
+   grid-column: 2;
+}
 
- .list__negativ {
+.list__negativ {
    position: absolute;
    font-size: 26px;
    color: red;
@@ -174,8 +184,8 @@ flex-direction: column;
    padding: 10px;
    font-style: italic;
    color: #888;
- }
+}
  
- .list__negativ.active {
+.list__negativ.active {
    display: block;
- }
+}

@@ -63,7 +63,15 @@ const BookList: React.FC<BookListProps> = ({
   <img className="list__deco-img" src="/images/book-deco.png" alt="Deco" />
 
   {filteredBooks.map((book) => (
-    <li className="list__item" key={book.id} onClick={() => setShowDescriptionId(prev => prev === book.id ? null : book.id)}>
+   <li
+      className={`list__item ${showDescriptionId === book.id ? "active" : ""}`}
+      key={book.id}
+      onClick={() =>
+        setShowDescriptionId((prev) => (prev === book.id ? null : book.id))
+      }
+    >
+      
+      
       <div className="list__item-poster">
         <img className="list__item-img" src="/images/books/1.jpg" alt="Img" />
       </div>
@@ -71,12 +79,6 @@ const BookList: React.FC<BookListProps> = ({
       <div className="list__item-inner">
         {book.title} - {book.author} ({book.year})
       </div>
-
-      {showDescriptionId === book.id && (
-        <p className="book-description">
-          {book.description || "Keine Beschreibung verfügbar."}
-        </p>
-      )}
 
       <div className="list__item-controls">
         <button className="list__item-btn list__item-favorit" onClick={() => addToReadingList(book)}>
@@ -92,6 +94,12 @@ const BookList: React.FC<BookListProps> = ({
           löschen
         </button>
       </div>
+
+      {showDescriptionId === book.id && (
+        <p className={`book-description ${showDescriptionId === book.id ? "active" : ""}`}>
+          {book.description || "Keine Beschreibung verfügbar."}
+        </p>
+      )}
     </li>
   ))}
 </ul>
