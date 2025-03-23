@@ -43,11 +43,17 @@ const App: React.FC = () => {
     fetchBooks();
   }, []);
 
-  const addToReadingList = (book: Book) => {
-    if (!readingList.some(b => b.id === book.id)) {
-      setReadingList([...readingList, { ...book, read: false }]);
-    }
+  const toggleReadingList = (book: Book) => {
+    setReadingList((prevList) => {
+      const isAlreadyAdded = prevList.some((b) => b.id === book.id);
+      if (isAlreadyAdded) {
+        return prevList.filter((b) => b.id !== book.id);
+      } else {
+        return [...prevList, { ...book, read: false }]; // додаємо з read
+      }
+    });
   };
+  
   
   const toggleReadStatus = (id: number) => {
     setReadingList(readingList.map(book =>
@@ -141,9 +147,10 @@ const App: React.FC = () => {
                 <BookList
                   books={books}
                   setBooks={setBooks}
-                  addToReadingList={addToReadingList}
+                  addToReadingList={toggleReadingList}
                   searchTerm={searchTerm}
                   viewMode={viewMode}
+                  readingList={readingList}
                 />
               </div>
             </>

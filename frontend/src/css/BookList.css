@@ -52,7 +52,7 @@
    justify-content: center;
    gap: 8px;
    background-color: rgb(90, 90, 90);
-   padding: 0 12px;
+   padding: 0 10px;
    border: none;
    border-radius: 8px;
    color: #fff;
@@ -91,6 +91,7 @@
    display: block;
    /* aspect-ratio: 9 / 16; */
    aspect-ratio: 2 / 3;
+   width: 100%;
 }
 
 .list__item-img {
@@ -274,3 +275,64 @@
    border: 2px solid orange;
    margin: 0 0 auto 0;
 }
+
+.list__item.favorite-added .list__item-favorit {
+   background-color: #27367b;
+}
+
+.list__item-favorit  {
+   min-width: 122px;
+   justify-content: space-between;
+}
+/* -------------------------------------------------------- */
+
+.list__body.card-view .list__item.active {
+   background-color: #333;
+   /* padding-top: 0; */
+} 
+
+.list__body.card-view .book-description.active {
+   /* height: 100%; */
+   height: calc(100% - 65px);
+   overflow-y: scroll;
+   overflow-x: hidden;
+   padding-top: 0;
+   color: #fff;
+   padding: 0 10px 10px
+} 
+
+.list__body.card-view .list__item.active .list__item-poster,
+.list__body.card-view .list__item.active .list__item-inner {
+   opacity: 0;
+   visibility: hidden;
+} 
+
+/* хром, сафари */
+.list__item ::-webkit-scrollbar { width: 0; }
+
+/* ie 10+ */
+.list__item.active { -ms-overflow-style: none; }
+
+/* фф (свойство больше не работает, других способов тоже нет)*/
+.list__item.active { overflow: -moz-scrollbars-none; }
+
+
+.list__body.card-view .list__item-inner {
+   min-height: 50px;
+}
+
+
+
+
+
+
+/* for mobile */
+
+/* .list__body.card-view .list__item.active .book-description.active {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 1;
+} */
