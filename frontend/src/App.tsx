@@ -4,6 +4,7 @@ import AddBook from "./components/AddBook";
 import SearchBar from "./components/SearchBar";
 import BookList from "./components/BookList";
 import ReadingList from "./components/ReadingList";
+import ViewToggle from "./components/ViewToggle";
 
 
 export type Book = {
@@ -11,6 +12,7 @@ export type Book = {
   title: string;
   author: string;
   year: number;
+  description?: string;
 };
 
 type BookWithStatus = Book & {
@@ -76,6 +78,9 @@ const App: React.FC = () => {
     setTheme(prev => (prev === "light" ? "dark" : "light"));
   };
 
+  const [viewMode, setViewMode] = useState<"list" | "grid">("list");
+
+
   // -- //theme -------------------------------------------------------------------------------
 
 
@@ -128,13 +133,19 @@ const App: React.FC = () => {
                   setSearchTerm={setSearchTerm}
                 />
 
-                <h2 className="list__title">Bücherliste</h2>
+                <div className="list__head">
+                  <h2 className="list__title">Bücherliste</h2>
+
+                  <ViewToggle viewMode={viewMode} setViewMode={setViewMode} />
+
+                </div>
 
                 <BookList
                   books={books}
                   setBooks={setBooks}
                   addToReadingList={addToReadingList}
                   searchTerm={searchTerm}
+                  viewMode={viewMode}
                 />
               </div>
             </>

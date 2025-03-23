@@ -190,3 +190,10 @@ input:focus {
   /* border: 3px solid #0054f5; */
   border: 3px solid orange;
 }
+
+.list__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}

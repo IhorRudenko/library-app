@@ -29,7 +29,9 @@ const Tabs: React.FC<TabsProps> = ({ activeTab, setActiveTab }) => {
           color: activeTab === "all" ? "#1445b8" : "#fff",
         }}
       >
-        Favoriten zum Lesen
+        <img className="tabs__btn-icon" src="/images/star.png" alt="Star"/>
+
+        Favoriten
       </button>
     </div>
   );

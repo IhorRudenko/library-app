@@ -21,6 +21,7 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
       title,
       author,
       year: Number(year),
+      description,
     };
 
     fetch("http://localhost:3001/books", {
@@ -37,6 +38,8 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
         // onBookAdded(); ← видалено
       });
   };
+
+  const [description, setDescription] = useState("");
 
   return (
     <div className="add-book__block" onSubmit={handleSubmit}>
@@ -79,6 +82,13 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
           }}
           required
           min={0}
+        />
+
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Beschreibung (optional)"
+          style={{ marginTop: "10px", padding: "8px", width: "100%" }}
         />
 
         <button className="add-book__btn btn btn-accent" type="submit">Speichern</button>
