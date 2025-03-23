@@ -13,6 +13,7 @@ export type Book = {
   author: string;
   year: number;
   description?: string;
+  image?: string;
 };
 
 type BookWithStatus = Book & {
@@ -63,7 +64,6 @@ const App: React.FC = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   
-  // -- theme ---------------------------------------------------------------------------
 
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || "light";
@@ -80,9 +80,7 @@ const App: React.FC = () => {
 
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
 
-
-  // -- //theme -------------------------------------------------------------------------------
-
+  const [image, setImage] = useState("");
 
 
 

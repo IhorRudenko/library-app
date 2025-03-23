@@ -1,13 +1,6 @@
 import React from "react";
 import "../css/BookList.css";
-
-type Book = {
-  id: number;
-  title: string;
-  author: string;
-  year: number;
-  description?: string;
-};
+import { Book } from "../App";
 
 type BookListProps = {
   books: Book[];
@@ -56,28 +49,41 @@ const BookList: React.FC<BookListProps> = ({
     <div className="list">
       <ul className={`list__body ${viewMode === "grid" ? "card-view" : "list-view"}`}>
   
-  <p className={`list__negativ ${filteredBooks.length === 0 ? "active" : ""}`}>
-    keine Ergebnisse gefunden
-  </p>
+        <p className={`list__negativ ${filteredBooks.length === 0 ? "active" : ""}`}>
+          keine Ergebnisse gefunden
+        </p>
 
-  <img className="list__deco-img" src="/images/book-deco.png" alt="Deco" />
+        <img className="list__deco-img" src="/images/book-deco.png" alt="Deco" />
 
-  {filteredBooks.map((book) => (
-   <li
+        {filteredBooks.map((book) => (
+      <li
       className={`list__item ${showDescriptionId === book.id ? "active" : ""}`}
       key={book.id}
       onClick={() =>
         setShowDescriptionId((prev) => (prev === book.id ? null : book.id))
       }
-    >
-      
-      
-      <div className="list__item-poster">
-        <img className="list__item-img" src="/images/books/1.jpg" alt="Img" />
-      </div>
+    >  
 
       <div className="list__item-inner">
         {book.title} - {book.author} ({book.year})
+      </div>
+
+      <div className="list__item-poster">
+        {/* <img className="list__item-img" src="/images/books/1.jpg" alt="Img" /> */}
+        {/* <img
+          className="list__item-img"
+          src={book.image || "/images/books/placeholder.png"}
+          alt={book.title}
+        /> */}
+
+        <img
+          className="list__item-img"
+          src={book.image || "/images/books/placeholder.png"}
+          onError={(e) => {
+            e.currentTarget.src = "/images/books/placeholder.png";
+          }}
+          alt={book.title}
+        />
       </div>
 
       <div className="list__item-controls">

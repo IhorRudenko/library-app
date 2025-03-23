@@ -22,6 +22,7 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
       author,
       year: Number(year),
       description,
+      image,
     };
 
     fetch("http://localhost:3001/books", {
@@ -36,11 +37,19 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
         setAuthor("");
         setYear("");
         setDescription("");
-        // onBookAdded(); ← видалено
+        setImage("");
       });
   };
 
   const [description, setDescription] = useState("");
+
+  const [image, setImage] = useState("");
+
+
+
+
+
+
 
   return (
     <div className="add-book__block" onSubmit={handleSubmit}>
@@ -91,6 +100,14 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Beschreibung (optional)"
+        />
+
+        <input
+          type="text"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
+          placeholder="Bild-URL oder Pfad"
+          required
         />
       </form>
 
