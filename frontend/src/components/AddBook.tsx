@@ -35,6 +35,7 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
         setTitle("");
         setAuthor("");
         setYear("");
+        setDescription("");
         // onBookAdded(); ← видалено
       });
   };
@@ -82,16 +83,15 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
           }}
           required
           min={0}
-        />
+        />       
 
-        <textarea
+        <button className="add-book__btn btn btn-accent" type="submit">Speichern</button>
+
+        <textarea className="add-book__textarea input" 
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Beschreibung (optional)"
-          style={{ marginTop: "10px", padding: "8px", width: "100%" }}
         />
-
-        <button className="add-book__btn btn btn-accent" type="submit">Speichern</button>
       </form>
 
     </div>
