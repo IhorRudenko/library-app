@@ -47,6 +47,9 @@ const BookList: React.FC<BookListProps> = ({
   const [showDescriptionId, setShowDescriptionId] = React.useState<number | null>(null);
 
 
+  // ----------------------------------------------------------------------------
+
+
   return (
     <div className="list">
       <ul className={`list__body ${viewMode === "grid" ? "card-view" : "list-view"}`}>

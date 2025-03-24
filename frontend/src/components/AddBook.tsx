@@ -93,7 +93,7 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
 
         <input className="add-book__input add-book__input--name input"
           type="text"
-          placeholder="Name"
+          placeholder="Name*"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
@@ -101,7 +101,7 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
 
         <input className="add-book__input add-book__input--author input"
           type="text"
-          placeholder="Autor"
+          placeholder="Autor*"
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
           required
@@ -109,7 +109,7 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
 
         <input className="add-book__input add-book__input--year input"
           type="number"
-          placeholder="Jahr"
+          placeholder="Jahr*"
           value={year}
           onChange={(e) => {
             const value = e.target.value;

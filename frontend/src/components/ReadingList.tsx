@@ -1,28 +1,44 @@
 import React from "react";
+import ViewToggle from "./ViewToggle";
+import "../css/ReadingList.css";
 
-type BookWithStatus = {
-  id: number;
-  title: string;
-  author: string;
-  year: number;
-  read: boolean;
-};
 
-type ReadingListProps = {
-  readingList: BookWithStatus[];
-  toggleReadStatus: (id: number) => void;
-  removeFromReadingList: (id: number) => void;
-};
+  type BookWithStatus = {
+    id: number;
+    title: string;
+    author: string;
+    year: number;
+    read: boolean;
+  };
 
-const ReadingList: React.FC<ReadingListProps> = ({
-  readingList,
-  toggleReadStatus,
-  removeFromReadingList
-}) => {
+  type ReadingListProps = {
+    readingList: BookWithStatus[];
+    toggleReadStatus: (id: number) => void;
+    removeFromReadingList: (id: number) => void;
+    viewMode: 'list' | 'grid';
+    setViewMode: React.Dispatch<React.SetStateAction<"grid" | "list">>;
+  };
+
+  const ReadingList: React.FC<ReadingListProps> = ({
+    readingList,
+    toggleReadStatus,
+    removeFromReadingList,
+    viewMode,
+    setViewMode
+  }) => {
+
+  // --------------------------------------------------------------
+
   return (
     <div>
-      <h2>📚 Мій список для читання</h2>
-      <ul>
+      <div className="list__head">
+        <h2 className="list__title">Meine Leseliste</h2>
+
+        <ViewToggle viewMode={viewMode} setViewMode={setViewMode} />
+
+      </div>
+
+      <ul className={`list__body ${viewMode === "grid" ? "card-view" : "list-view"}`}>
         {readingList.map(book => (
           <li className="list__item" key={book.id}>
             <div className="list__item-inner">

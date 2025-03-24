@@ -88,6 +88,7 @@ const App: React.FC = () => {
 
   const [image, setImage] = useState("");
 
+  const [readingListViewMode, setReadingListViewMode] = useState<"grid" | "list">("list");
 
 
   
@@ -155,12 +156,16 @@ const App: React.FC = () => {
               </div>
             </>
           )}
+
+          {/* -- ReadingList ---------------------------------------------- */}
     
           {activeTab === "readingList" && (
             <ReadingList
               readingList={readingList}
               toggleReadStatus={toggleReadStatus}
               removeFromReadingList={removeFromReadingList}
+              viewMode={readingListViewMode}
+              setViewMode={setReadingListViewMode}
             />
           )}
         </div>
