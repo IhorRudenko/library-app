@@ -76,27 +76,27 @@ const BookList: React.FC<BookListProps> = ({
               </div>
 
               <div className="list__item-poster">
-              <img
-                className="list__item-img"
-                src={book.image || "/images/books/placeholder.png"}
-                onError={(e) => {
-                  e.currentTarget.src = "/images/books/placeholder.png";
-                }}
-                alt={book.title}
-              />
+                <img
+                  className="list__item-img"
+                  src={book.image || "/images/books/placeholder.png"}
+                  onError={(e) => {
+                    e.currentTarget.src = "/images/books/placeholder.png";
+                  }}
+                  alt={book.title}
+                />
               </div>
 
               <div className="list__item-controls">
-              <button
-                className={`list__item-btn list__item-favorit ${isFavorite ? "favorite-added" : ""}`}
-                onClick={(e) => {
-                  e.stopPropagation(); // щоб не відкривався опис
-                  addToReadingList(book);
-                }}
-              >
-                <img className="list__item-star" src="/images/star.png" alt="Star" />
-                {isFavorite ? "Hinzugefügt" : "zu Favoriten"}
-              </button>
+                <button
+                  className={`list__item-btn list__item-favorit ${isFavorite ? "favorite-added" : ""}`}
+                  onClick={(e) => {
+                    e.stopPropagation(); // щоб не відкривався опис
+                    addToReadingList(book);
+                  }}
+                >
+                  <img className="list__item-star" src="/images/star.png" alt="Star" />
+                  {isFavorite ? "Hinzugefügt" : "zu Favoriten"}
+                </button>
 
                 <button
                   className="list__item-btn list__item-delete"

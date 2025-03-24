@@ -164,8 +164,8 @@ const App: React.FC = () => {
               readingList={readingList}
               toggleReadStatus={toggleReadStatus}
               removeFromReadingList={removeFromReadingList}
-              viewMode={readingListViewMode}
-              setViewMode={setReadingListViewMode}
+              viewMode={viewMode}
+              setViewMode={setViewMode}
             />
           )}
         </div>
