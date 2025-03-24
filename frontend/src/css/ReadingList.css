@@ -1,9 +1,12 @@
-/* .book-list.list {
-   display: block;
- }
- 
- .book-list.grid {
-   display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-   gap: 20px;
- } */
+.list__item-btn {
+  width: 100%;
+} 
+
+.list__item-btn.read {
+  background-color: #27367b;
+}
+
+.list__item-inner.read {
+  text-decoration: line-through;
+  color: #27367b;
+}

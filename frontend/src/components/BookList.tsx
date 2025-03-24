@@ -95,7 +95,7 @@ const BookList: React.FC<BookListProps> = ({
                   }}
                 >
                   <img className="list__item-star" src="/images/star.png" alt="Star" />
-                  {isFavorite ? "Hinzugefügt" : "zu Favoriten"}
+                  {isFavorite ? "hinzugefügt" : "zu Favoriten"}
                 </button>
 
                 <button

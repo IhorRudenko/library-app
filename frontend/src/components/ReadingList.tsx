@@ -41,7 +41,7 @@ import { BookWithStatus } from "../types/types";
             className={`list__item ${showDescriptionId === book.id ? "active" : ""}`}
             onClick={() => setShowDescriptionId(book.id === showDescriptionId ? null : book.id)}
           >
-            <div className="list__item-inner">
+            <div className={`list__item-inner ${book.read ? "read" : ""}`}>
               {book.title} - {book.author} ({book.year})
             </div>
 
@@ -57,8 +57,15 @@ import { BookWithStatus } from "../types/types";
             </div>
 
             <div className="list__item-controls">
-              <button className="list__item-btn" onClick={() => toggleReadStatus(book.id)}>
-                {book.read ? "📘 Прочитано" : "📖 Ще не читано"}
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation(); 
+                  toggleReadStatus(book.id);
+                }}
+                className={`list__item-btn ${book.read ? "read" : ""}`}
+              >
+                  
+                {book.read ? "gelesen" : "ungelesen"}
               </button>
 
               <button className="list__item-btn list__item-delete" 
