@@ -1,6 +1,14 @@
-// @media (max-width: 1440px) {
+@media (max-width: 1920px) {
+   .input::placeholder,
+   .add-book__textarea::placeholder,
+   .add-book__select option {
+      font-family: "Roboto", serif;
+   }
+}
+
+@media (max-width: 1440px) {
    
-// }
+}
 
 @media (max-width: 1199.98px) {
    .app__title {
@@ -10,6 +18,10 @@
    .list__deco-img {
       width: 60px;
       top: -26px;
+   }
+   
+   .wrapper {
+      padding-top: 70px;
    }
 }
 
@@ -96,17 +108,141 @@
       font-size: 16px;
    }
 
+   .add-book__toggle.collapsed,
+   .add-book__toggle.expanded {
+      font-size: 16px;
+      height: 40px;
+      padding: 10px 40px 10px 15px;
+      border-radius: 10px;
+   }
+
+   .add-book__toggle.collapsed::before,
+   .add-book__toggle.expanded::before {
+      right: 15px;
+      width: 15px;
+      height: 15px;
+   }
+
+   .list__head {
+      margin: 20px 0;
+   }
+
+   .add-book__form-container.expanded {
+      max-height: 244px;
+   }
+
+   .search__btn--find,
+   .search__btn--reset {
+      width: auto;
+      min-width: auto;
+   }
 }
 
-// @media (max-width: 767.98px) {
-   
-// }
+@media (max-width: 767.98px) {
+   .theme__btn {
+      width: 70px;
+      height: 30px;
+      border-radius: 160px;
+   }
 
-// @media (max-width: 575.98px) {
-   
-// }
+   .theme__btn .indicator {
+      width: 30px;
+      height: 30px;
+  }
 
-// @media (max-width: 424.98px) {
-   
-// }
+  .theme__btn.active .indicator {
+     left: 40px;
+  }
+
+  .theme__icon {
+      width: 25px;
+      height: 25px;
+      max-width: 100%;
+   }
+
+   .app__title {
+      font-size: 25px;
+  }
+
+  .logo {
+      width: 35px;
+      height: 35px;
+      flex: 0 0 35px;
+   }
+
+   .logo__box {
+      gap: 15px;
+  }
+
+  .add-book__form,
+  .search__inner {
+     column-gap: 10px;
+  } 
+
+  .search__inner {
+     display: grid;
+     grid-template-columns: 1fr 115px;
+      grid-auto-rows: auto;
+   }
+
+   .search__btn--reset {
+      grid-column: span 2;
+   }
+
+   .wrapper {
+      padding-top: 55px;
+   }
+}
+
+@media (max-width: 680px) {
+   .add-book__form {
+      display: flex;
+      flex-direction: column;
+   }
+
+   .input,
+   .btn {
+      width: 100%;
+   }
+
+   .image-upload-label {
+      order: 6;
+   }
+
+   .add-book__btn {
+      order: 7;
+   }
+
+   .input,
+   .textarea,
+   select {
+      font-size: 14px;
+   }
+
+   .input::placeholder,
+   .add-book__textarea::placeholder,
+   .add-book__select option {
+      font-size: 14px;
+   }
+
+   .add-book__form-container.expanded {
+      max-height: 405px;
+  }
+}  
+
+@media (max-width: 575.98px) {
+   .search__inner {
+      display: flex;
+      flex-direction: column;
+   }
+ 
+}
+
+@media (max-width: 424.98px) {
+   .tabs__btn {
+      font-size: 14px;
+      padding: 8px;
+      height: 35px;
+   }
+}
 

@@ -24,11 +24,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchInput, setSearchInput, setS
           onClick={() => setSearchTerm(searchInput)}
           style={{ padding: "8px 16px" }}
         >
-          Suche
+          <img className="search__img" src="../images/search.png" alt="Deco" />
+         
+          <span>Suche</span>
         </button>
-      </div>
-
-      <div className="search__reset">
 
         <button
           className="search__btn search__btn--reset btn"
@@ -40,6 +39,19 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchInput, setSearchInput, setS
           Suchfilter löschen
         </button>
       </div>
+
+      {/* <div className="search__reset">
+
+        <button
+          className="search__btn search__btn--reset btn"
+          onClick={() => {
+            setSearchInput("");
+            setSearchTerm("");
+          }}
+        >
+          Suchfilter löschen
+        </button>
+      </div> */}
     </div>
   );
 };

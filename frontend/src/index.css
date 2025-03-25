@@ -52,7 +52,7 @@ button {
   /* height: calc(100vh - 60px); */
 
   position: relative;
-  padding-top: 60px;
+  padding-top: 80px;
 }
 
 .app__title {
@@ -74,19 +74,23 @@ button {
 }
 
 .header.scrolled {
-  background-color: #27367be5;
+  background-color: #27367bf1;
   transition: all 0.3s ease;
 }
 
+.header.scrolled .logo__box {
+  gap: 20px;
+}
+
 .header.scrolled .logo__title {
-  font-size: 30px;
+  font-size: 33px;
   transition: all 0.3s ease;
 }
 
 .header.scrolled .logo {
-  width: 30px;
-  height: 30px;
-  flex: 0 0 30px;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
   transition: all 0.3s ease;
 }
 
@@ -99,6 +103,7 @@ button {
   display: flex;
   align-items: center;
   gap: 30px;
+  transition: all 0.3s ease;
 }
 
 .logo__title {
@@ -198,6 +203,9 @@ button {
 .btn-accent {
   background-color: #0054f5;
   color: #fff;
+  border-radius: 10px;
+  font-size: 18px;
+  padding: 10px 25px;
   transition: background-color .2s ease-in-out, 
               color .2s ease-in-out;
 }
@@ -246,4 +254,17 @@ select:focus {
   align-items: center;
   justify-content: space-between;
   gap: 15px;
+  margin: 30px 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }

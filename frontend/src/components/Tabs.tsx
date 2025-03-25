@@ -9,7 +9,7 @@ type TabsProps = {
 
 const Tabs: React.FC<TabsProps> = ({ activeTab, setActiveTab }) => {
   return (
-    <div className="tabs" style={{ marginBottom: "20px" }}>
+    <div className="tabs">
       <button
         className="tabs__btn tabs__btn--left"
         onClick={() => setActiveTab("all")}

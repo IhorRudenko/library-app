@@ -123,6 +123,7 @@ const App: React.FC = () => {
     console.log("Scrolled:", scrolled);
   }, [scrolled]);
   
+  const [isExpanded, setIsExpanded] = useState(false);
 
   // ----------------------------------------------------------------------------------
 
@@ -157,10 +158,19 @@ const App: React.FC = () => {
       <div className="wrapper">
         <div className="container">
 
-          {/* <h1 className="app__title">Bibliothek</h1> */}
+          <h1 className="visually-hidden">Bibliothek</h1>
 
           <div className="list__head">
-            <h2 className="list__title">Filter</h2>
+            <div>
+              <h2 className="visually-hidden">Neues Buch hinzufügen</h2>
+                
+              <button
+                className={`add-book__toggle btn-accent ${isExpanded ? "expanded" : "collapsed"}`}
+                onClick={() => setIsExpanded(prev => !prev)}
+              >
+                Neues Buch hinzufügen
+              </button>
+            </div>
 
             <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
           </div>
@@ -169,9 +179,12 @@ const App: React.FC = () => {
           {activeTab === "all" && (
             <>
               <div className="main">
+                <div className={`add-book__form-container ${isExpanded ? "expanded" : "collapsed"}`}>
 
-                <AddBook books={books} setBooks={setBooks} />
-            
+                  <AddBook books={books} setBooks={setBooks} />
+
+                </div>
+
                 <h3 className="search-book__title h3-title">Suche aus der Bücherliste</h3>
 
                 <SearchBar

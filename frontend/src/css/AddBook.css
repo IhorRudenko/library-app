@@ -1,11 +1,10 @@
 .add-book__form {
-   /* display: flex; */
    display: grid;
    grid-template-columns: 1fr 1fr 1fr 200px;
    grid-template-rows: 50px minmax(50px, 1fr);
    align-items: center;
    gap: 15px;
-   margin-bottom: 20px;
+   margin-bottom: 30px;
 }
 
 .add-book__textarea {
@@ -35,4 +34,63 @@
 .add-book__select,
 .add-book__select option {
    color: #6e6e6e;  
+}
+/* ------------------------------------------------ */
+
+.add-book__form-container.collapsed {
+   /* overflow: hidden; */
+   position: relative;
+   z-index: -1;
+   max-height: 0;
+   opacity: 0;
+   transition: max-height 0.6s ease-in-out, opacity 0.3s ease-in-out;
+ }
+ 
+ .add-book__form-container.expanded {
+   max-height: 160px; 
+   opacity: 1;
+   transition: max-height 0.3s ease-in-out, opacity 0.5s ease-in-out;
+ }
+
+.add-book__toggle {
+   border-radius: 20px;
+   height: 50px;
+   padding: 10px 50px 10px 25px;
+   position: relative;
+   font-weight: 700;
+}
+
+.add-book__toggle::before {
+   content: '';
+   position: absolute;
+   right: 20px;
+   width: 20px;
+   height: 20px;
+   background-image: url(/public/images/arrow-down.png);
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: 20px;
+   transition: transform .3s ease-in-out;
+}
+
+
+.add-book__toggle.expanded {
+   background-color: #27367b;
+}
+
+.add-book__toggle.expanded::before {
+   transform: rotate(-180deg);
+   transition: transform .3s ease-in-out;
+}
+ 
+.search__img {
+   width: 25px;
+}
+
+.search__btn {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+   white-space: nowrap;
 }
