@@ -36,20 +36,26 @@ const BookList: React.FC<BookListProps> = ({
     );
   });
 
-  const groupedBooks: Record<string, Book[]> = {};
+  // === 1. Групуємо книги за жанрами ===
+const groupedBooks: Record<string, Book[]> = {};
 
-  filteredBooks.forEach((book) => {
-    const genres = Array.isArray(book.genre)
-      ? book.genre
-      : book.genre.split(",").map((g) => g.trim());
+books.forEach((book) => {
+  const genres = Array.isArray(book.genre)
+    ? book.genre
+    : book.genre.split(",").map((g) => g.trim());
 
-    genres.forEach((genre) => {
-      if (!groupedBooks[genre]) {
-        groupedBooks[genre] = [];
-      }
-      groupedBooks[genre].push(book);
-    });
+  genres.forEach((genre) => {
+    if (!groupedBooks[genre]) {
+      groupedBooks[genre] = [];
+    }
+    groupedBooks[genre].push(book);
   });
+});
+
+// === 2. Отримуємо жанри у порядку популярності ===
+const sortedGenres = Object.entries(groupedBooks)
+  .sort(([, booksA], [, booksB]) => booksB.length - booksA.length) // Сортуємо за довжиною масивів
+  .map(([genre]) => genre); // Беремо тільки назви жанрів
 
   const [showDescriptionId, setShowDescriptionId] = useState<number | null>(null);
 
@@ -61,14 +67,16 @@ const BookList: React.FC<BookListProps> = ({
     setBooks((prevBooks) => prevBooks.filter((book) => book.id !== bookId));
   };
 
-
+  const sortedGenreEntries = Object.entries(groupedBooks).sort(
+    ([, booksA], [, booksB]) => booksB.length - booksA.length
+  );
 
   // -----------------------------------------------------
 
 
   return (
     <div className={`book-list ${viewMode}`}>
-      {Object.entries(groupedBooks).map(([genre, booksInGenre]) => (
+      {sortedGenreEntries.map(([genre, booksInGenre]) => (
         <div key={genre} className="genre-group">
           <h2 className="genre-title">{genre}</h2>
 

@@ -160,36 +160,21 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
         />
 
         <select value={genre} onChange={(e) => setGenre(e.target.value)}>
-          <option value="">Оберіть жанр</option>
+          <option value="">Wähle ein Genre</option>
           <option value="Dystopian">Dystopian</option>
-          <option value="Fantasy">Fantasy</option>
+          <option value="Science Fiction">Science Fiction</option>
+          <option value="Literary Fiction">Literary Fiction</option>
+          <option value="Romance">Romance</option>
           <option value="Classic Literature">Classic Literature</option>
-          <option value="Historical Fiction">Historical Fiction</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Political Satire">Political Satire</option>
           <option value="Historical Fiction">Historical Fiction</option>
           <option value="Psychological Thriller">Psychological Thriller</option>
-          <option value="Political Satire">Political Satire</option>
-          <option value="Adventure">Adventure</option>
           <option value="Magical Realism">Magical Realism</option>
-          <option value="Fantasy">Fantasy</option>
         </select>
 
         <button className="add-book__btn btn btn-accent" type="submit">Speichern</button>
-
-
-        {/* <label htmlFor="imageUpload" className="image-upload-label btn">
-          Bild hochladen
-          <input
-            id="imageUpload"
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              if (e.target.files && e.target.files[0]) {
-                setImageFile(e.target.files[0]);
-              }
-            }}
-            style={{ display: "none" }}
-          />
-        </label> */}
         
       </form>
 
