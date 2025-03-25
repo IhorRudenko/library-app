@@ -321,6 +321,9 @@
    min-height: 50px;
 }
 
+.list__body.card-view .list__item-controls {
+   width: 100%;
+}
 
 
 

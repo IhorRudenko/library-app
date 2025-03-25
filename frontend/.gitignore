@@ -21,3 +21,95 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+
+
+
+
+
+
+
+
+
+  return (
+   <div className="list">
+     <ul className={`list__body ${viewMode === "grid" ? "card-view" : "list-view"}`}>
+ 
+       <p className={`list__negativ ${filteredBooks.length === 0 ? "active" : ""}`}>
+         keine Ergebnisse gefunden
+       </p>
+
+       <img className="list__deco-img" src="/images/book-deco.png" alt="Deco" />
+
+       {books.map((book) => {
+         const isFavorite = readingList.some((fav) => fav.id === book.id);
+
+         return (
+           <li
+             className={`list__item ${showDescriptionId === book.id ? "active" : ""} ${isFavorite ? "favorite-added" : ""}`}
+             key={book.id}
+             onClick={() =>
+               setShowDescriptionId((prev) => (prev === book.id ? null : book.id))
+             }
+           >
+             <div className="list__item-inner">
+               {book.title} - {book.author} ({book.year})
+             </div>
+
+             <div className="list__item-poster">
+               <img
+                 className="list__item-img"
+                 src={book.image || "/images/books/placeholder.png"}
+                 onError={(e) => {
+                   e.currentTarget.src = "/images/books/placeholder.png";
+                 }}
+                 alt={book.title}
+               />
+             </div>
+
+             <div className="list__item-controls">
+               <button
+                 className={`list__item-btn list__item-favorit ${isFavorite ? "favorite-added" : ""}`}
+                 onClick={(e) => {
+                   e.stopPropagation(); // щоб не відкривався опис
+                   addToReadingList(book);
+                 }}
+               >
+                 <img className="list__item-star" src="/images/star.png" alt="Star" />
+                 {isFavorite ? "hinzugefügt" : "zu Favoriten"}
+               </button>
+
+               <button
+                 className="list__item-btn list__item-delete"
+                 onClick={(e) => {
+                   e.stopPropagation();
+                   handleDelete(book.id);
+                 }}
+               >
+                 <img className="list__item-garbage" src="/images/delete.png" alt="Garbage" />
+                 löschen
+               </button>
+             </div>
+
+             {showDescriptionId === book.id && (
+               <p className={`book-description ${showDescriptionId === book.id ? "active" : ""}`}>
+                 {book.description || "Keine Beschreibung verfügbar."}
+               </p>
+             )}
+           </li>
+         );
+       })}
+
+     </ul>
+
+   </div>
+ );
+
+
+
+
+
+
+
+

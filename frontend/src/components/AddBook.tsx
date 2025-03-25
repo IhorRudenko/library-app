@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Book } from "../App";
+import { Book } from "../types/types";
 import "../css/AddBook.css";
 
 
@@ -36,6 +36,9 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
       saveBook(""); // без зображення
     }
   };
+
+  const [genre, setGenre] = useState<string | string[]>("");
+
   
   const saveBook = (imageData: string) => {
     const newBook: Book = {
@@ -45,7 +48,18 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
       year: Number(year),
       description,
       image: imageData,
+      genre, // ✅ додай сюди
     };
+
+    // const newBook: Book = {
+    //   id: Date.now(),
+    //   title,
+    //   author,
+    //   year: Number(year),
+    //   description,
+    //   image: imageData,
+    //   genre: "Unknown", // або будь-який дефолтний жанр
+    // };
   
     fetch("http://localhost:3001/books", {
       method: "POST",
@@ -153,6 +167,20 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Beschreibung (optional)"
         />
+
+        <select value={genre} onChange={(e) => setGenre(e.target.value)}>
+          <option value="">Оберіть жанр</option>
+          <option value="Dystopian">Dystopian</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Classic Literature">Classic Literature</option>
+          <option value="Historical Fiction">Historical Fiction</option>
+          <option value="Historical Fiction">Historical Fiction</option>
+          <option value="Psychological Thriller">Psychological Thriller</option>
+          <option value="Political Satire">Political Satire</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Magical Realism">Magical Realism</option>
+          <option value="Fantasy">Fantasy</option>
+        </select>
 
         <button className="add-book__btn btn btn-accent" type="submit">Speichern</button>
 

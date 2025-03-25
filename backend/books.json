@@ -5,7 +5,11 @@
     "author": "George Orwell",
     "year": 1949,
     "description": "Ein düsterer Blick auf eine totalitäre Zukunft. Winston Smith lebt in einem Überwachungsstaat, wo Gedanken kontrolliert werden. Der Große Bruder sieht alles. Individualität ist verboten. Winston beginnt zu zweifeln und rebelliert heimlich. Doch der Staat ist allgegenwärtig. Der Roman warnt vor totaler Kontrolle und dem Verlust der Freiheit.",
-    "image": "/images/books/1984.jpg"
+    "image": "/images/books/1984.jpg",
+    "genre": [
+      "Dystopian",
+      "Science Fiction"
+    ]
   },
   {
     "id": 2,
@@ -13,7 +17,10 @@
     "author": "Harper Lee",
     "year": 1960,
     "description": "Eine bewegende Geschichte über Gerechtigkeit und Vorurteile im Süden der USA.",
-    "image": "/images/books/to-kill-a-mockingbird.jpg"
+    "image": "/images/books/to-kill-a-mockingbird.jpg",
+    "genre": [
+      "Literary Fiction"
+    ]
   },
   {
     "id": 3,
@@ -21,7 +28,10 @@
     "author": "F. Scott Fitzgerald",
     "year": 1925,
     "description": "Ein Spiegelbild der Roaring Twenties. Jay Gatsby ist reich und geheimnisvoll. Er liebt Daisy, doch ihre Welt ist oberflächlich. Der Erzähler Nick beobachtet das Drama. Reichtum und Liebe kollidieren. Der Roman zeigt die Leere des amerikanischen Traums.",
-    "image": "/images/books/gatsby.jpg"
+    "image": "/images/books/gatsby.jpg",
+    "genre": [
+      "Romance"
+    ]
   },
   {
     "id": 4,
@@ -29,7 +39,11 @@
     "author": "Jane Austen",
     "year": 1813,
     "description": "Ein Klassiker über Liebe, Stolz und gesellschaftliche Erwartungen.",
-    "image": "/images/books/pride-and-prejudice.jpg"
+    "image": "/images/books/pride-and-prejudice.jpg",
+    "genre": [
+      "Classic Literature",
+      "Romance"
+    ]
   },
   {
     "id": 5,
@@ -37,7 +51,10 @@
     "author": "J.D. Salinger",
     "year": 1951,
     "description": "Ein Jugendlicher kämpft mit Entfremdung und der Suche nach Identität.",
-    "image": "/images/books/catcher-in-the-rye.jpg"
+    "image": "/images/books/catcher-in-the-rye.jpg",
+    "genre": [
+      "Literary Fiction"
+    ]
   },
   {
     "id": 6,
@@ -45,7 +62,11 @@
     "author": "J.R.R. Tolkien",
     "year": 1937,
     "description": "Ein Hobbit begibt sich auf eine gefährliche Reise voller Abenteuer.",
-    "image": "/images/books/hobbit.jpg"
+    "image": "/images/books/hobbit.jpg",
+    "genre": [
+      "Adventure",
+      "Fantasy"
+    ]
   },
   {
     "id": 7,
@@ -53,7 +74,10 @@
     "author": "Ray Bradbury",
     "year": 1953,
     "description": "In einer Zukunftsgesellschaft werden Bücher verbrannt, um Kontrolle zu sichern.",
-    "image": "/images/books/fahrenheit-451.jpg"
+    "image": "/images/books/fahrenheit-451.jpg",
+    "genre": [
+      "Dystopian"
+    ]
   },
   {
     "id": 8,
@@ -61,7 +85,10 @@
     "author": "Herman Melville",
     "year": 1851,
     "description": "Ein Kapitän ist besessen davon, einen riesigen weißen Wal zu jagen.",
-    "image": "/images/books/moby-dick.jpg"
+    "image": "/images/books/moby-dick.jpg",
+    "genre": [
+      "Literary Fiction"
+    ]
   },
   {
     "id": 9,
@@ -69,7 +96,11 @@
     "author": "J.R.R. Tolkien",
     "year": 1954,
     "description": "Ein epischer Kampf zwischen Gut und Böse in einer fantastischen Welt.",
-    "image": "/images/books/lord-of-the-rings.jpg"
+    "image": "/images/books/lord-of-the-rings.jpg",
+    "genre": [
+      "Adventure",
+      "Fantasy"
+    ]
   },
   {
     "id": 10,
@@ -77,7 +108,10 @@
     "author": "Aldous Huxley",
     "year": 1932,
     "description": "Eine Zukunftsgesellschaft, in der Freiheit durch Komfort ersetzt wurde.",
-    "image": "/images/books/brave-new-world.jpg"
+    "image": "/images/books/brave-new-world.jpg",
+    "genre": [
+      "Dystopian"
+    ]
   },
   {
     "id": 11,
@@ -85,7 +119,10 @@
     "author": "Charlotte Brontë",
     "year": 1847,
     "description": "Eine unabhängige Frau sucht ihren Platz in einer konservativen Gesellschaft.",
-    "image": "/images/books/jane-eyre.jpg"
+    "image": "/images/books/jane-eyre.jpg",
+    "genre": [
+      "Literary Fiction"
+    ]
   },
   {
     "id": 12,
@@ -93,7 +130,10 @@
     "author": "George Orwell",
     "year": 1945,
     "description": "Eine politische Fabel über Revolution und Machtmissbrauch.",
-    "image": "/images/books/animal-farm.jpg"
+    "image": "/images/books/animal-farm.jpg",
+    "genre": [
+      "Political Satire"
+    ]
   },
   {
     "id": 13,
@@ -101,7 +141,11 @@
     "author": "Emily Brontë",
     "year": 1847,
     "description": "Eine leidenschaftliche und düstere Liebesgeschichte. Heathcliff und Catherine sind durch tiefe Gefühle verbunden. Doch Stolz und Missverständnisse trennen sie. Die Geschichte spielt auf dem windgepeitschten Moor. Liebe wird zur Besessenheit. Ein Klassiker der englischen Romantik.",
-    "image": "/images/books/wuthering.jpg"
+    "image": "/images/books/wuthering.jpg",
+    "genre": [
+      "Classic Literature",
+      "Romance"
+    ]
   },
   {
     "id": 14,
@@ -109,7 +153,11 @@
     "author": "C.S. Lewis",
     "year": 1950,
     "description": "Kinder entdecken ein magisches Land und erleben große Abenteuer.",
-    "image": "/images/books/narnia.jpg"
+    "image": "/images/books/narnia.jpg",
+    "genre": [
+      "Adventure",
+      "Fantasy"
+    ]
   },
   {
     "id": 15,
@@ -117,7 +165,10 @@
     "author": "Charles Dickens",
     "year": 1861,
     "description": "Ein armer Junge träumt von Reichtum und Liebe.",
-    "image": "/images/books/great-expectations.jpg"
+    "image": "/images/books/great-expectations.jpg",
+    "genre": [
+      "Romance"
+    ]
   },
   {
     "id": 16,
@@ -125,7 +176,11 @@
     "author": "Leo Tolstoy",
     "year": 1869,
     "description": "Ein umfassender Roman über Liebe und Krieg im zaristischen Russland.",
-    "image": "/images/books/war-and-peace.jpg"
+    "image": "/images/books/war-and-peace.jpg",
+    "genre": [
+      "Historical Fiction",
+      "Romance"
+    ]
   },
   {
     "id": 17,
@@ -133,7 +188,10 @@
     "author": "Fyodor Dostoevsky",
     "year": 1866,
     "description": "Ein junger Mann kämpft mit den Folgen eines Mordes.",
-    "image": "/images/books/crime-and-punishment.jpg"
+    "image": "/images/books/crime-and-punishment.jpg",
+    "genre": [
+      "Literary Fiction"
+    ]
   },
   {
     "id": 18,
@@ -141,7 +199,10 @@
     "author": "Victor Hugo",
     "year": 1862,
     "description": "Ein Mann sucht Erlösung in einer von Ungerechtigkeit geprägten Welt.",
-    "image": "/images/books/les-miserables.jpg"
+    "image": "/images/books/les-miserables.jpg",
+    "genre": [
+      "Literary Fiction"
+    ]
   },
   {
     "id": 19,
@@ -149,7 +210,10 @@
     "author": "Paulo Coelho",
     "year": 1988,
     "description": "Ein Hirte folgt seinen Träumen und findet seine Bestimmung.",
-    "image": "/images/books/alchemist.jpg"
+    "image": "/images/books/alchemist.jpg",
+    "genre": [
+      "Literary Fiction"
+    ]
   },
   {
     "id": 20,
@@ -157,7 +221,10 @@
     "author": "Antoine de Saint-Exupéry",
     "year": 1943,
     "description": "Eine poetische Reise durch die Augen eines kleinen Prinzen.",
-    "image": "/images/books/little-prince.jpg"
+    "image": "/images/books/little-prince.jpg",
+    "genre": [
+      "Adventure"
+    ]
   },
   {
     "id": 21,
@@ -165,7 +232,10 @@
     "author": "Bram Stoker",
     "year": 1897,
     "description": "Der klassische Vampirroman über Angst und Verführung.",
-    "image": "/images/books/dracula.jpg"
+    "image": "/images/books/dracula.jpg",
+    "genre": [
+      "Classic Literature"
+    ]
   },
   {
     "id": 22,
@@ -173,7 +243,10 @@
     "author": "Mary Shelley",
     "year": 1818,
     "description": "Ein Wissenschaftler erschafft ein Monster mit tragischen Folgen.",
-    "image": "/images/books/frankenstein.jpg"
+    "image": "/images/books/frankenstein.jpg",
+    "genre": [
+      "Literary Fiction"
+    ]
   },
   {
     "id": 23,
@@ -181,7 +254,10 @@
     "author": "Oscar Wilde",
     "year": 1890,
     "description": "Ein Mann bleibt ewig jung, doch sein Porträt zeigt seine Sünden.",
-    "image": "/images/books/dorian-gray.jpg"
+    "image": "/images/books/dorian-gray.jpg",
+    "genre": [
+      "Literary Fiction"
+    ]
   },
   {
     "id": 24,
@@ -189,7 +265,13 @@
     "author": "Miguel de Cervantes",
     "year": 1605,
     "description": "Ein Ritter träumt von Abenteuern und kämpft gegen Windmühlen. Alonso Quixano wird zu Don Quixote. Inspiriert von Ritterromanen sucht er das Gute. Doch die Welt ist nicht so edel. Sein treuer Knappe Sancho Panza begleitet ihn. Die Geschichten sind voller Humor und Tiefsinn. Realität und Fantasie verschwimmen. Der Roman ist Satire und Hommage zugleich. Er behandelt Idealismus und Wahnsinn. Ein Grundstein der modernen Literatur.",
-    "image": "/images/books/don-quixote.jpg"
+    "image": "/images/books/don-quixote.jpg",
+    "genre": [
+      "Adventure",
+      "Classic Literature",
+      "Political Satire",
+      "Psychological Thriller"
+    ]
   },
   {
     "id": 25,
@@ -197,7 +279,10 @@
     "author": "Khaled Hosseini",
     "year": 2003,
     "description": "Eine berührende Geschichte über Freundschaft und Schuld. Amir und Hassan wachsen im Kabul der 1970er auf. Ein Verrat trennt sie für immer. Jahre später kehrt Amir zurück, um Wiedergutmachung zu leisten. Die Geschichte spiegelt die Tragödie Afghanistans. Themen wie Loyalität und Reue stehen im Mittelpunkt. Die Charaktere sind vielschichtig. Emotionale Tiefe durchzieht den Roman. Er zeigt, dass Erlösung möglich ist. Eine bewegende Erzählung über das Menschsein.",
-    "image": "/images/books/kite-runner.jpg"
+    "image": "/images/books/kite-runner.jpg",
+    "genre": [
+      "Literary Fiction"
+    ]
   },
   {
     "id": 26,
@@ -205,7 +290,12 @@
     "author": "Charles Dickens",
     "year": 1859,
     "description": "Ein Roman über Opfer und Wiedergeburt zur Zeit der Französischen Revolution. London und Paris sind die Hauptschauplätze. Der edle Sydney Carton lebt ein verlorenes Leben. Doch am Ende opfert er sich aus Liebe. Die Revolution bringt Gerechtigkeit und Terror. Die Figuren sind eng miteinander verbunden. Dickens verwebt persönliche und politische Themen. Der berühmte erste Satz ist legendär. Geschichte wird lebendig erzählt. Ein Werk über Hoffnung im Chaos.",
-    "image": "/images/books/two-cities.jpg"
+    "image": "/images/books/two-cities.jpg",
+    "genre": [
+      "Historical Fiction",
+      "Political Satire",
+      "Romance"
+    ]
   },
   {
     "id": 27,
@@ -213,7 +303,10 @@
     "author": "Markus Zusak",
     "year": 2005,
     "description": "Ein Mädchen findet Trost in Büchern während des Zweiten Weltkriegs. Liesel lebt bei Pflegeeltern in Deutschland. Der Tod selbst erzählt die Geschichte. Bücher werden zu ihrer Rettung. Sie stiehlt Worte, um zu überleben. Ihr Freund Rudy bringt Licht in dunkle Zeiten. Ein jüdischer Mann versteckt sich im Keller. Die Menschlichkeit trotzt dem Schrecken des Krieges. Die Sprache des Romans ist poetisch. Eine kraftvolle Geschichte über Mut und Worte.",
-    "image": "/images/books/book-thief.jpg"
+    "image": "/images/books/book-thief.jpg",
+    "genre": [
+      "Literary Fiction"
+    ]
   },
   {
     "id": 28,
@@ -221,7 +314,12 @@
     "author": "Gabriel García Márquez",
     "year": 1967,
     "description": "Die Geschichte einer Familie über Generationen in einem magischen Dorf. Macondo wird zur Bühne für Wunder und Tragödien. Die Buendía-Dynastie lebt in Kreisläufen. Zeit verläuft nicht linear. Magischer Realismus prägt den Stil. Liebe, Krieg und Einsamkeit sind zentrale Themen. Figuren sterben und kehren zurück. Prophezeiungen erfüllen sich. Die Sprache ist bildgewaltig. Ein Meisterwerk lateinamerikanischer Literatur.",
-    "image": "/images/books/solitude.jpg"
+    "image": "/images/books/solitude.jpg",
+    "genre": [
+      "Classic Literature",
+      "Magical Realism",
+      "Romance"
+    ]
   },
   {
     "id": 29,
@@ -229,7 +327,11 @@
     "author": "J.K. Rowling",
     "year": 1997,
     "description": "Ein Junge erfährt, dass er ein Zauberer ist. Harry Potter besucht die Schule für Hexerei und Zauberei, Hogwarts. Dort findet er Freunde und stellt sich dem bösen Lord Voldemort. Die Reihe zeigt den Kampf zwischen Gut und Böse, Freundschaft und Mut.",
-    "image": "/images/books/harry-potter.jpg"
+    "image": "/images/books/harry-potter.jpg",
+    "genre": [
+      "Adventure",
+      "Fantasy"
+    ]
   },
   {
     "id": 30,
@@ -237,6 +339,19 @@
     "author": "Stephen King",
     "year": 1977,
     "description": "Ein abgelegenes Hotel enthüllt dunkle Geheimnisse und Wahnsinn. Jack Torrance übernimmt einen Hausmeisterjob im Overlook Hotel. Seine Familie begleitet ihn in die Einsamkeit. Der psychische Druck wächst. Sein Sohn Danny besitzt übersinnliche Fähigkeiten. Er sieht Geister und Visionen. Das Hotel lebt von bösen Erinnerungen. Jack verfällt dem Wahnsinn. Der Horror ist psychologisch und übernatürlich. King erschafft einen unvergesslichen Albtraum.",
-    "image": "/images/books/shining.jpg"
+    "image": "/images/books/shining.jpg",
+    "genre": [
+      "Psychological Thriller",
+      "Science Fiction"
+    ]
+  },
+  {
+    "id": 1742862185468,
+    "title": "ascasca",
+    "author": "scascasc",
+    "year": 341231213,
+    "description": "aaasasasas",
+    "image": "",
+    "genre": "Dystopian"
   }
 ]

@@ -7,14 +7,7 @@ import ReadingList from "./components/ReadingList";
 import ViewToggle from "./components/ViewToggle";
 
 
-export type Book = {
-  id: number;
-  title: string;
-  author: string;
-  year: number;
-  description?: string;
-  image?: string;
-};
+import { Book } from "./types/types";
 
 type BookWithStatus = Book & {
   read: boolean;
@@ -91,7 +84,7 @@ const App: React.FC = () => {
   const [readingListViewMode, setReadingListViewMode] = useState<"grid" | "list">("list");
 
 
-  
+  // ----------------------------------------------------------------------------------
 
   return (
     <div className="App">

@@ -1,126 +1,137 @@
-import React from "react";
+import React, { useState } from "react";
+import { Book } from "../types/types";
 import "../css/BookList.css";
-import { Book } from "../App";
 
-type BookListProps = {
+
+interface BookListProps {
   books: Book[];
   setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
   addToReadingList: (book: Book) => void;
   searchTerm: string;
   viewMode: "list" | "grid";
   readingList: Book[];
-};
+}
 
-const BookList: React.FC<BookListProps> = ({ 
-  books, 
-  setBooks, 
-  addToReadingList, 
+const BookList: React.FC<BookListProps> = ({
+  books,
+  setBooks,
+  addToReadingList,
   searchTerm,
-  viewMode, 
-  readingList 
+  viewMode,
+  readingList
 }) => {
-  const handleDelete = (id: number) => {
-    fetch(`http://localhost:3001/books/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then(() => {
-        setBooks(books.filter((book) => book.id !== id));
-      });
+  const [openBookId, setOpenBookId] = React.useState<number | null>(null);
+
+  const handleToggleDescription = (bookId: number) => {
+    setOpenBookId(prevId => (prevId === bookId ? null : bookId));
   };
 
-  
   const filteredBooks = books.filter((book) => {
-    const trimmedTerm = searchTerm.trim().toLowerCase();
+    const term = searchTerm.toLowerCase().trim();
     return (
-      book.title.toLowerCase().includes(trimmedTerm) ||
-      book.author.toLowerCase().includes(trimmedTerm)
+      book.title.toLowerCase().includes(term) ||
+      book.author.toLowerCase().includes(term)
     );
   });
 
+  const groupedBooks: Record<string, Book[]> = {};
 
-  const [openBookId, setOpenBookId] = React.useState<number | null>(null);
-  const toggleDescription = (id: number) => {
-    setOpenBookId(prevId => (prevId === id ? null : id));
+  filteredBooks.forEach((book) => {
+    const genres = Array.isArray(book.genre)
+      ? book.genre
+      : book.genre.split(",").map((g) => g.trim());
+
+    genres.forEach((genre) => {
+      if (!groupedBooks[genre]) {
+        groupedBooks[genre] = [];
+      }
+      groupedBooks[genre].push(book);
+    });
+  });
+
+  const [showDescriptionId, setShowDescriptionId] = useState<number | null>(null);
+
+  const isFavorite = (bookId: number): boolean => {
+    return readingList.some((book) => book.id === bookId);
   };
 
-  const [showDescriptionId, setShowDescriptionId] = React.useState<number | null>(null);
+  const handleDelete = (bookId: number) => {
+    setBooks((prevBooks) => prevBooks.filter((book) => book.id !== bookId));
+  };
 
 
-  // ----------------------------------------------------------------------------
+
+  // -----------------------------------------------------
 
 
   return (
-    <div className="list">
-      <ul className={`list__body ${viewMode === "grid" ? "card-view" : "list-view"}`}>
-  
-        <p className={`list__negativ ${filteredBooks.length === 0 ? "active" : ""}`}>
-          keine Ergebnisse gefunden
-        </p>
+    <div className={`book-list ${viewMode}`}>
+      {Object.entries(groupedBooks).map(([genre, booksInGenre]) => (
+        <div key={genre} className="genre-group">
+          <h2 className="genre-title">{genre}</h2>
 
-        <img className="list__deco-img" src="/images/book-deco.png" alt="Deco" />
-
-        {filteredBooks.map((book) => {
-          const isFavorite = readingList.some((fav) => fav.id === book.id);
-
-          return (
-            <li
-              className={`list__item ${showDescriptionId === book.id ? "active" : ""} ${isFavorite ? "favorite-added" : ""}`}
-              key={book.id}
-              onClick={() =>
-                setShowDescriptionId((prev) => (prev === book.id ? null : book.id))
-              }
-            >
-              <div className="list__item-inner">
-                {book.title} - {book.author} ({book.year})
-              </div>
-
-              <div className="list__item-poster">
-                <img
-                  className="list__item-img"
-                  src={book.image || "/images/books/placeholder.png"}
-                  onError={(e) => {
-                    e.currentTarget.src = "/images/books/placeholder.png";
-                  }}
-                  alt={book.title}
-                />
-              </div>
-
-              <div className="list__item-controls">
-                <button
-                  className={`list__item-btn list__item-favorit ${isFavorite ? "favorite-added" : ""}`}
-                  onClick={(e) => {
-                    e.stopPropagation(); // щоб не відкривався опис
-                    addToReadingList(book);
-                  }}
+         <ul className={`list__body ${viewMode === "grid" ? "card-view" : "list-view"}`}>
+            {booksInGenre.map((book) => (
+              
+              
+              <li 
+                className={`list__item ${showDescriptionId === book.id ? "active" : ""} ${isFavorite(book.id) ? "favorite-added" : ""}`}
+                  key={book.id}
+                  onClick={() =>
+                    setShowDescriptionId((prev) => (prev === book.id ? null : book.id))
+                  }
                 >
-                  <img className="list__item-star" src="/images/star.png" alt="Star" />
-                  {isFavorite ? "hinzugefügt" : "zu Favoriten"}
-                </button>
+                
+                <div className="list__item-inner">
+                  {book.title} - {book.author} ({book.year})
+                </div>
 
-                <button
-                  className="list__item-btn list__item-delete"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleDelete(book.id);
-                  }}
-                >
-                  <img className="list__item-garbage" src="/images/delete.png" alt="Garbage" />
-                  löschen
-                </button>
-              </div>
+                <div className="list__item-poster">
+                  <img
+                    className="list__item-img"
+                    src={book.image || "/images/books/placeholder.png"}
+                    onError={(e) => {
+                      e.currentTarget.src = "/images/books/placeholder.png";
+                    }}
+                    alt={book.title}
+                  />
+                </div>
 
-              {showDescriptionId === book.id && (
-                <p className={`book-description ${showDescriptionId === book.id ? "active" : ""}`}>
-                  {book.description || "Keine Beschreibung verfügbar."}
-                </p>
-              )}
-            </li>
-          );
-        })}
+                <div className="list__item-controls">
+                  <button
+                    className={`list__item-btn list__item-favorit ${isFavorite(book.id) ? "favorite-added" : ""}`}
+                      onClick={(e) => {
+                        e.stopPropagation(); // щоб не відкривався опис
+                        addToReadingList(book);
+                      }}
+                    >
+                    <img className="list__item-star" src="/images/star.png" alt="Star" />
+                    {isFavorite(book.id) ? "hinzugefügt" : "zu Favoriten"}
+                  </button>
 
-      </ul>
+                  <button
+                    className={`list__item-btn list__item-delete ${isFavorite(book.id) ? "favorite-added" : ""}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDelete(book.id);
+                    }}
+                    >
+                    <img className="list__item-garbage" src="/images/delete.png" alt="Garbage" />
+                    löschen
+                  </button>
+                </div>
 
+                {showDescriptionId === book.id && (
+                  <p className={`book-description ${showDescriptionId === book.id ? "active" : ""}`}>
+                    {book.description || "Keine Beschreibung verfügbar."}
+                  </p>
+                )}
+               
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 };

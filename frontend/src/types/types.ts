@@ -3,9 +3,11 @@ export type Book = {
   title: string;
   author: string;
   year: number;
-  description?: string;
-  image?: string;
+  image: string;
+  description: string;
+  genre: string | string[]; // ← це важливо!
 };
+
 
 export type BookWithStatus = Book & {
   read: boolean;
