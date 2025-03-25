@@ -1,4 +1,4 @@
-form.add-book__form {
+.add-book__form {
    /* display: flex; */
    display: grid;
    grid-template-columns: 1fr 1fr 1fr 200px;
@@ -26,6 +26,10 @@ form.add-book__form {
    border: 2px solid #2ecc71;
    color: #1b9950;
    font-weight: bold;
+}
+
+.add-book__select {
+   padding-right: 25px;
 }
 
 .add-book__select,

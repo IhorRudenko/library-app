@@ -87,8 +87,8 @@ button {
 .theme__btn {
   position: relative;
   display: block;
-  width: 100px;
-  height: 50px;
+  width: 80px;
+  height: 40px;
   border-radius: 160px;
   background: #d2d2d2;
   cursor: pointer;
@@ -112,24 +112,24 @@ button {
   position: absolute;
   top: 0;
   left: 0;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background: linear-gradient(to bottom, #444,#222);
   border-radius: 50%;
   transform: scale(0.9);
   /* box-shadow: 0 8px 40px rgba(0,0,0,0.5),
               inset 0 4px 4px rgba(255,255,255,0.2),
               inset 0 -4px 4px rgba(255,255,255,0.2); */
-  transition: 0.5s;
+  transition: 0.4s;
 }
 
 .theme__btn.active .indicator {
-  left: 50px;
+  left: 40px;
   background: linear-gradient(to bottom, #eaeaea, #f9f9f9);
   box-shadow: 0 8px 20px rgba(0,0,0,0.1),
               inset 0 4px 4px rgba(255,255,255,1),
               inset 0 -4px 4px rgba(255,255,255,1);
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .btn {

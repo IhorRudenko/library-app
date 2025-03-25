@@ -81,9 +81,15 @@ const sortedGenres = Object.entries(groupedBooks)
           <h2 className="genre-title">{genre}</h2>
 
          <ul className={`list__body ${viewMode === "grid" ? "card-view" : "list-view"}`}>
-            {booksInGenre.map((book) => (
-              
-              
+           
+            <p className={`list__negativ ${filteredBooks.length === 0 ? "active" : ""}`}>
+              keine Ergebnisse gefunden
+            </p>
+
+            <img className="list__deco-img" src="/images/book-deco.png" alt="Deco" />
+
+            {booksInGenre.map((book) => (          
+                          
               <li 
                 className={`list__item ${showDescriptionId === book.id ? "active" : ""} ${isFavorite(book.id) ? "favorite-added" : ""}`}
                   key={book.id}

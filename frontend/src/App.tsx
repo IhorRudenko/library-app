@@ -5,9 +5,9 @@ import SearchBar from "./components/SearchBar";
 import BookList from "./components/BookList";
 import ReadingList from "./components/ReadingList";
 import ViewToggle from "./components/ViewToggle";
-
-
 import { Book } from "./types/types";
+
+import './media-style/App.scss';
 
 type BookWithStatus = Book & {
   read: boolean;
