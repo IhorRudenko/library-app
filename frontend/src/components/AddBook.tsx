@@ -159,7 +159,7 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
           placeholder="Beschreibung (optional)"
         />
 
-        <select className="input" value={genre} onChange={(e) => setGenre(e.target.value)}>
+        <select className="add-book__select input" value={genre} onChange={(e) => setGenre(e.target.value)}>
           <option value="">Wähle ein Genre</option>
           <option value="Dystopian">Dystopian</option>
           <option value="Science Fiction">Science Fiction</option>

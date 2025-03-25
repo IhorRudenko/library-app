@@ -11,3 +11,13 @@
   text-decoration: line-through;
   color: #27367b;
 }
+
+
+.empty-message {
+  text-align: center;
+  color: gray;
+  padding: 3rem;
+  font-size: 1.5rem;
+  border: 3px solid orange;
+  border-radius: 10px;
+}

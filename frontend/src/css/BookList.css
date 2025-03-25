@@ -97,7 +97,13 @@
 .list__item-img {
    width: 100%;
    height: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
    object-fit: cover;
+   transition: transform .2s ease-in-out;
 }
 
 .list__body.card-view .list__item.active {
@@ -126,6 +132,7 @@
 .list__item-poster {
   display: none;
   position: relative;
+  overflow: hidden;
 }
 
 /* -------------------------------------------- */
@@ -325,6 +332,11 @@
    width: 100%;
 }
 
+
+.list__body.card-view .list__item:hover .list__item-img {
+   transform: scale(1.04);
+   transition: all .2s ease-in-out;
+}
 
 
 

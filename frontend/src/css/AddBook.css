@@ -26,4 +26,9 @@ form.add-book__form {
    border: 2px solid #2ecc71;
    color: #1b9950;
    font-weight: bold;
- }
+}
+
+.add-book__select,
+.add-book__select option {
+   color: #6e6e6e;  
+}
