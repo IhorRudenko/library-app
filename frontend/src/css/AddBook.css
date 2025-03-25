@@ -13,7 +13,7 @@ form.add-book__form {
    max-height: 100px;
    max-width: none;
    width: 100%;
-   grid-column: span 3;
+   grid-column: span 2;
    resize: vertical;
 }
 

@@ -36,10 +36,8 @@ const BookList: React.FC<BookListProps> = ({
     );
   });
 
-  // === 1. Групуємо книги за жанрами ===
-const groupedBooks: Record<string, Book[]> = {};
-
-books.forEach((book) => {
+  const groupedBooks: Record<string, Book[]> = {};
+filteredBooks.forEach((book) => {
   const genres = Array.isArray(book.genre)
     ? book.genre
     : book.genre.split(",").map((g) => g.trim());
