@@ -105,16 +105,38 @@ const App: React.FC = () => {
       console.error("❌ Помилка під час видалення книги:", error);
     }
   };
+
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log("Scrolled:", scrolled);
+  }, [scrolled]);
   
 
   // ----------------------------------------------------------------------------------
 
   return (
     <div className="App">
-      <header className="header">
-          <div className="container">
+        <header className={`header ${scrolled ? "scrolled" : ""}`}>
+          <div className="container header__container">
             <div className="header__inner">
-              <img className="logo" src="/images/logo.png" alt="Logo"/>
+
+              <div className="logo__box">
+                <h1 className="app__title logo__title">Bibliothek</h1>
+
+                <img className="logo" src="/images/logo.png" alt="Logo"/>
+              </div>
 
               <button
                 className={`theme__btn ${theme === "dark" ? "active" : ""}`}
@@ -135,9 +157,13 @@ const App: React.FC = () => {
       <div className="wrapper">
         <div className="container">
 
-          <h1 className="app__title">Bibliothek</h1>
-          
-          <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+          {/* <h1 className="app__title">Bibliothek</h1> */}
+
+          <div className="list__head">
+            <h2 className="list__title">Filter</h2>
+
+            <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+          </div>
     
           {/* Умовне відображення вкладок */}
           {activeTab === "all" && (

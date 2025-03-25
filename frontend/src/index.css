@@ -25,7 +25,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 code {
@@ -47,9 +47,12 @@ button {
 }
 
 .wrapper {
-  overflow-x: hidden;
-  overflow-y: scroll;
-  height: calc(100vh - 60px);
+  /* overflow-x: hidden; */
+  /* overflow-y: scroll; */
+  /* height: calc(100vh - 60px); */
+
+  position: relative;
+  padding-top: 60px;
 }
 
 .app__title {
@@ -59,10 +62,49 @@ button {
 }
 
 .header {
-  min-height: 50px;
+  /* min-height: 50px; */
   width: 100%;
   height: auto;
   background-color: #27367b;
+  transition: all 0.3s ease;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  padding: 10px 0;
+}
+
+.header.scrolled {
+  background-color: #27367be5;
+  transition: all 0.3s ease;
+}
+
+.header.scrolled .logo__title {
+  font-size: 30px;
+  transition: all 0.3s ease;
+}
+
+.header.scrolled .logo {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  transition: all 0.3s ease;
+}
+
+.header__container {
+  padding: 0 10px;
+}
+
+
+.logo__box {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo__title {
+  color: #fff;
+  margin: 0;
+  transition: all 0.3s ease;
 }
 
 .logo {
