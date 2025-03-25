@@ -10,6 +10,7 @@ interface BookListProps {
   searchTerm: string;
   viewMode: "list" | "grid";
   readingList: Book[];
+  onDeleteBook: (id: number) => void;
 }
 
 const BookList: React.FC<BookListProps> = ({
@@ -18,7 +19,8 @@ const BookList: React.FC<BookListProps> = ({
   addToReadingList,
   searchTerm,
   viewMode,
-  readingList
+  readingList,
+  onDeleteBook
 }) => {
   const [openBookId, setOpenBookId] = React.useState<number | null>(null);
 
@@ -113,7 +115,7 @@ const BookList: React.FC<BookListProps> = ({
                     className={`list__item-btn list__item-delete ${isFavorite(book.id) ? "favorite-added" : ""}`}
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleDelete(book.id);
+                      onDeleteBook(book.id);
                     }}
                     >
                     <img className="list__item-garbage" src="/images/delete.png" alt="Garbage" />

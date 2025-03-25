@@ -28,12 +28,12 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
   
       reader.onerror = (err) => {
         console.error("❌ Помилка при зчитуванні зображення:", err);
-        saveBook(""); // fallback
+        saveBook(""); 
       };
   
-      reader.readAsDataURL(imageFile); // ⬅️ запускаємо
+      reader.readAsDataURL(imageFile); 
     } else {
-      saveBook(""); // без зображення
+      saveBook(""); 
     }
   };
 
@@ -48,19 +48,10 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
       year: Number(year),
       description,
       image: imageData,
-      genre, // ✅ додай сюди
+      genre, 
     };
 
-    // const newBook: Book = {
-    //   id: Date.now(),
-    //   title,
-    //   author,
-    //   year: Number(year),
-    //   description,
-    //   image: imageData,
-    //   genre: "Unknown", // або будь-який дефолтний жанр
-    // };
-  
+     
     fetch("http://localhost:3001/books", {
       method: "POST",
       headers: {

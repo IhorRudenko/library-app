@@ -83,6 +83,29 @@ const App: React.FC = () => {
 
   const [readingListViewMode, setReadingListViewMode] = useState<"grid" | "list">("list");
 
+  const handleDeleteBook = async (id: number) => {
+    try {
+      // Видалення з сервера (json-server)
+      await fetch(`http://localhost:3001/books/${id}`, {
+        method: "DELETE",
+      });
+  
+      // Оновлення списку книг
+      setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
+  
+      // Оновлення списку для читання
+      setReadingList((prevList) => prevList.filter((book) => book.id !== id));
+  
+      // Оновлення localStorage
+      localStorage.setItem(
+        "readingList",
+        JSON.stringify(readingList.filter((book) => book.id !== id))
+      );
+    } catch (error) {
+      console.error("❌ Помилка під час видалення книги:", error);
+    }
+  };
+  
 
   // ----------------------------------------------------------------------------------
 
@@ -145,6 +168,7 @@ const App: React.FC = () => {
                   searchTerm={searchTerm}
                   viewMode={viewMode}
                   readingList={readingList}
+                  onDeleteBook={handleDeleteBook}
                 />
               </div>
             </>
