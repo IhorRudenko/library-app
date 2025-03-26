@@ -6,9 +6,9 @@
    gap: 15px;
    margin-bottom: 30px;
    padding: 15px;
-   border: 2px solid orange;
+   border: 2px solid var(--orange-blau);
    border-radius: 10px;
-   background: antiquewhite;
+   background: var(--light-yellow);
 }
 
 .add-book__textarea {
@@ -82,7 +82,7 @@
 
 
 .add-book__toggle.expanded {
-   background-color: #27367b;
+   background-color: --text-accent;
 }
 
 .add-book__toggle.expanded::before {

@@ -1,11 +1,28 @@
 :root {
   --bg-color: #f3f3f3;
-  --text-color: #000000;
+  --bg-dark: #fff;
+  --text-color: #000;
+  --text-accent: #27367b;
+  --bg-header: #27367b;
+  --border-blau: #27367b;
+  --list-item: #f2f2f2;
+  --list-item-inner: #ffeccaa3;
+  --light-yellow: antiquewhite;
+  --orange-blau: orange;
 }
 
 [data-theme='dark'] {
   --bg-color: #212121;
-  --text-color: #ffffff;
+  --bg-dark: #000;
+  --text-color: #fff;
+  --text-accent: #fff;
+  --bg-header: #000;
+  --border-blau: #000;
+  --list-item: #272422;
+  --list-item-inner: #212121;
+  --light-yellow: #27367b;
+  --orange-blau: #27367b;
+
 }
 
 * {
@@ -58,14 +75,14 @@ button {
 .app__title {
   font-size: 50px;
   margin: 20px 0;
-  color: #27367b;
+  color: var(--text-accent);
 }
 
 .header {
   /* min-height: 50px; */
   width: 100%;
   height: auto;
-  background-color: #27367b;
+  background-color: var(--bg-header);;
   transition: all 0.3s ease;
   position: fixed;
   top: 0;
@@ -219,13 +236,13 @@ button {
 .h3-title {
   font-size: 20px;
   margin: 20px 0 15px;
-  color: #27367b; 
+  color: --text-accent; 
 }
 
 .list__title {
   font-size: 35px;
   font-weight: 700;
-  color: #27367b;
+  color: --text-accent;
   margin: 0;
 }
 
@@ -278,7 +295,7 @@ select:focus {
   text-align: center;
   padding: 0 0 25px;
   margin-bottom: 0;
-  color: #27367b;
+  color: --text-accent;
   text-transform: uppercase;
   
 }

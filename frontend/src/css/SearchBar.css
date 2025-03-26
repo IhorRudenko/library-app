@@ -4,9 +4,9 @@
    gap: 15px;
    flex-wrap: wrap;
    padding: 15px;
-   border: 2px solid orange;
+   border: 2px solid var(--orange-blau);
    border-radius: 10px;
-   background: antiquewhite;
+   background: var(--light-yellow);
 }
 
 .search__inner {
