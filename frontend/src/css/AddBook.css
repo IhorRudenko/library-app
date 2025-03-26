@@ -5,6 +5,10 @@
    align-items: center;
    gap: 15px;
    margin-bottom: 30px;
+   padding: 15px;
+   border: 2px solid orange;
+   border-radius: 10px;
+   background: antiquewhite;
 }
 
 .add-book__textarea {
@@ -20,6 +24,7 @@
 
 .image-upload-label {
    cursor: pointer;
+   border: 2px solid #27367b;
 }
 
 .image-upload-label.uploaded {
@@ -49,7 +54,7 @@
  }
  
  .add-book__form-container.expanded {
-   max-height: 160px; 
+   max-height: 187px; 
    opacity: 1;
    transition: max-height 0.3s ease-in-out, opacity 0.5s ease-in-out;
  }

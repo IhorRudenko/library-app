@@ -1,10 +1,10 @@
 :root {
-  --bg-color: #ffffff;
+  --bg-color: #f3f3f3;
   --text-color: #000000;
 }
 
 [data-theme='dark'] {
-  --bg-color: #1e1e1e;
+  --bg-color: #212121;
   --text-color: #ffffff;
 }
 
@@ -102,7 +102,7 @@ button {
 .logo__box {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   transition: all 0.3s ease;
 }
 
@@ -113,9 +113,9 @@ button {
 }
 
 .logo {
-  width: 50px;
-  height: 50px;
-  flex: 0 0 50px;
+  width: 60px;
+  height: 60px;
+  flex: 0 0 60px;
 }
 
 .header__inner {
@@ -191,6 +191,7 @@ button {
   color: #1445b8;
   background-color: #DADADA;
   transition: background-color .2s ease-in-out;
+  border: 2px solid #27367b;
 }
 
 .btn:hover {
@@ -278,6 +279,8 @@ select:focus {
   padding: 0 0 25px;
   margin-bottom: 0;
   color: #27367b;
+  text-transform: uppercase;
+  
 }
 
 .genre-group {

@@ -1,12 +1,14 @@
 .list__body {
    display: flex;
    flex-direction: column;
-   border: 3px solid orange;
+   /* border: 3px solid orange; */
+   border: 2px solid #27367b;
    border-radius: 10px;
    padding: 50px 15px 25px;
    position: relative;
    min-height: 145px;
    z-index: 1;
+   background-color: #fff;
 }
 
 .list__item {
@@ -32,9 +34,14 @@
    background-color: #ffeccaa3;
 }
 
-.list__item:nth-child(even) {
-   background-color: #f2f2f2; /* або будь-який колір */
+/* .list__item:nth-child(even) {
+   background-color: #f2f2f2;
+} */
+
+.list__item {
+   background-color: #f2f2f2;
 }
+ 
  
 .list__deco-img {
    position: absolute;

@@ -3,6 +3,10 @@
    align-items: center;
    gap: 15px;
    flex-wrap: wrap;
+   padding: 15px;
+   border: 2px solid orange;
+   border-radius: 10px;
+   background: antiquewhite;
 }
 
 .search__inner {

@@ -134,9 +134,9 @@ const App: React.FC = () => {
             <div className="header__inner">
 
               <div className="logo__box">
-                <h1 className="app__title logo__title">Bibliothek</h1>
-
                 <img className="logo" src="/images/logo.png" alt="Logo"/>
+
+                <h1 className="app__title logo__title">Bibliothek</h1>
               </div>
 
               <button
