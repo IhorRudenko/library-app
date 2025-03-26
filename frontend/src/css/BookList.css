@@ -1,14 +1,14 @@
 .list__body {
    display: flex;
    flex-direction: column;
-   /* border: 3px solid orange; */
-   border: 2px solid var(--border-blau);
+   /* border: 2px solid var(--border-blau); */
    border-radius: 10px;
    padding: 50px 15px 25px;
    position: relative;
    min-height: 145px;
    z-index: 1;
-   background-color: var(--bg-dark);;
+   background-color: var(--bg-dark);
+   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .list__item {
@@ -19,7 +19,7 @@
    padding: 10px 10px;
    justify-content: space-between;
    align-items: center;
-   border: 1px solid var(--list-item);
+   border: 1px solid var(--gray1-gray2);
    border-radius: 8px;
    transition: all 0.2s ease-in-out;
    cursor: pointer;
@@ -116,6 +116,11 @@
    display: flex;
    overflow: hidden;
 }
+
+[data-theme="dark"] .list__body.list-view .list__item.active,
+[data-theme="dark"] .list__body.card-view .list__item.active {
+   background-color: #27367b;
+} 
 
 .list__body.card-view .list__item.active .book-description.active{
    position: absolute;
@@ -229,7 +234,7 @@
 .list-view {
    display: flex;
    flex-direction: column;
-   gap: 12px;
+   gap: 15px;
 }
  
 .list__body.card-view {
@@ -290,7 +295,7 @@
 }
 
 .list__item.favorite-added .list__item-favorit {
-   background-color: #e07b06;
+   background-color: #f18f00;
    /* background-color: #bc7513; */
 }
 

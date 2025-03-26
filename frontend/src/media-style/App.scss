@@ -356,17 +356,19 @@
 
    .list__body {
       border: none;
-      padding: 30px 0 0;
+      padding: 30px 8px 15px;
+      border-top: 3px solid orange;
+      border-radius: 0 0 10px 10px;
    }
 
    .genre-title {
-      border-bottom: 3px solid orange;
       padding-bottom: 15px;
    }
 
    .list__deco-img {
-      top: -40px;
+      top: -21px;
       left: 25px;
+      width: 45px;
   }
 }
 

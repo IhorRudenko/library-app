@@ -24,7 +24,6 @@
 
 .image-upload-label {
    cursor: pointer;
-   border: 2px solid #27367b;
 }
 
 .image-upload-label.uploaded {
@@ -82,7 +81,7 @@
 
 
 .add-book__toggle.expanded {
-   background-color: --text-accent;
+   background-color: #27367b;
 }
 
 .add-book__toggle.expanded::before {

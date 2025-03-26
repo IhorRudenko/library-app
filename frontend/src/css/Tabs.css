@@ -13,7 +13,7 @@
   font-weight: 700;
   border: none;
   padding: 10px 25px;
-  color: --text-accent;
+  color: var(--text-accent);
   transition: background-color .2s ease-in-out;
 }
 

@@ -9,6 +9,7 @@
   --list-item-inner: #ffeccaa3;
   --light-yellow: antiquewhite;
   --orange-blau: orange;
+  --gray1-gray2: #ababab;
 }
 
 [data-theme='dark'] {
@@ -21,7 +22,8 @@
   --list-item: #272422;
   --list-item-inner: #212121;
   --light-yellow: #27367b;
-  --orange-blau: #27367b;
+  --orange-blau: #272422;
+  --gray1-gray2: #272422;
 
 }
 
@@ -208,7 +210,7 @@ button {
   color: #1445b8;
   background-color: #DADADA;
   transition: background-color .2s ease-in-out;
-  border: 2px solid #27367b;
+  border: 1px solid #27367b;
 }
 
 .btn:hover {
@@ -244,6 +246,7 @@ button {
   font-weight: 700;
   color: --text-accent;
   margin: 0;
+  color: var(--text-accent);
 }
 
 .input {
@@ -295,9 +298,7 @@ select:focus {
   text-align: center;
   padding: 0 0 25px;
   margin-bottom: 0;
-  color: --text-accent;
-  text-transform: uppercase;
-  
+  color: var(--text-accent);
 }
 
 .genre-group {

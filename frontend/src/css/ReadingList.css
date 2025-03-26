@@ -3,13 +3,13 @@
 } 
 
 .list__item-btn.read {
-  background-color: --text-accent;
+  background-color: var(--text-accent);
   width: 100%;
 }
 
 .list__item-inner.read {
   text-decoration: line-through;
-  color: --text-accent;
+  color: var(--text-accent);
 }
 
 
