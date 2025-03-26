@@ -13,30 +13,30 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
   const [author, setAuthor] = useState("");
   const [year, setYear] = useState<number | "">("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
   
-    if (imageFile) {
-      const reader = new FileReader();
+    const newBook = {
+      title,
+      author,
+      year,
+      image,
+      description,
+    };
   
-      reader.onloadend = () => {
-        const base64Image = reader.result as string;
-        console.log("📸 Base64 готовий:", base64Image.slice(0, 50)); // обрізано для консолі
+    await fetch("http://localhost:3001/books", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newBook),
+    });
   
-        saveBook(base64Image);
-      };
-  
-      reader.onerror = (err) => {
-        console.error("❌ Помилка при зчитуванні зображення:", err);
-        saveBook(""); 
-      };
-  
-      reader.readAsDataURL(imageFile); 
-    } else {
-      saveBook(""); 
-    }
+    // Можливо очистити форму після
   };
-
+  
+  
   const [genre, setGenre] = useState<string | string[]>("");
 
   
@@ -51,7 +51,7 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
       genre, 
     };
 
-     
+         
     fetch("http://localhost:3001/books", {
       method: "POST",
       headers: {
@@ -95,7 +95,7 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
 
       <h3 className="add-book__title h3-title">Ein Buch zur Bibliothek hinzufügen</h3>
 
-      <form className="add-book__form">
+      <form className="add-book__form" onSubmit={handleSubmit}> 
 
         <input className="add-book__input add-book__input--name input"
           type="text"

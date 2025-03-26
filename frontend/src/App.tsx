@@ -25,12 +25,12 @@ const App: React.FC = () => {
     localStorage.setItem("readingList", JSON.stringify(readingList));
   }, [readingList]);
 
-  const fetchBooks = () => {
-    fetch("http://localhost:3001/books")
-      .then((res) => res.json())
-      .then((data) => setBooks(data))
-      .catch((error) => console.error("Помилка завантаження:", error));
+  const fetchBooks = async () => {
+    const response = await fetch("http://localhost:3001/books");
+    const data = await response.json();
+    setBooks(data);
   };
+  
 
   useEffect(() => {
     fetchBooks();
@@ -48,11 +48,30 @@ const App: React.FC = () => {
   };
   
   
-  const toggleReadStatus = (id: number) => {
-    setReadingList(readingList.map(book =>
-      book.id === id ? { ...book, read: !book.read } : book
-    ));
+  const toggleReadStatus = async (id: number) => {
+    const book = readingList.find((b) => b.id === id);
+    if (!book) return;
+  
+    try {
+      const response = await fetch(`http://localhost:3001/books/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ read: !book.read }),
+      });
+  
+      const updatedBook = await response.json();
+  
+      setReadingList((prevList) =>
+        prevList.map((b) => (b.id === id ? updatedBook : b))
+      );
+    } catch (error) {
+      console.error("Помилка при оновленні статусу читання:", error);
+    }
   };
+  
+ 
   
   const removeFromReadingList = (id: number) => {
     setReadingList(readingList.filter(book => book.id !== id));
