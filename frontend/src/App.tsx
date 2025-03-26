@@ -160,12 +160,12 @@ const App: React.FC = () => {
 
           <h1 className="visually-hidden">Bibliothek</h1>
 
-          <div className="list__head">
-            <div>
+          <div className="list-head list-head--top">
+            <div className="list-head__inner">
               <h2 className="visually-hidden">Neues Buch hinzufügen</h2>
                 
               <button
-                className={`add-book__toggle btn-accent ${isExpanded ? "expanded" : "collapsed"}`}
+                className={`add-book__toggle btn-accent ${isExpanded ? "collapsed" : "expanded"}`}
                 onClick={() => setIsExpanded(prev => !prev)}
               >
                 Neues Buch hinzufügen
@@ -179,7 +179,7 @@ const App: React.FC = () => {
           {activeTab === "all" && (
             <>
               <div className="main">
-                <div className={`add-book__form-container ${isExpanded ? "expanded" : "collapsed"}`}>
+                <div className={`add-book__form-container ${isExpanded ? "collapsed" : "expanded"}`}>
 
                   <AddBook books={books} setBooks={setBooks} />
 
@@ -193,7 +193,7 @@ const App: React.FC = () => {
                   setSearchTerm={setSearchTerm}
                 />
 
-                <div className="list__head">
+                <div className="list-head list-head--middle">
                   <h2 className="list__title">Bücherliste</h2>
 
                   <ViewToggle viewMode={viewMode} setViewMode={setViewMode} />

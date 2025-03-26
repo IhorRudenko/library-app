@@ -3,7 +3,7 @@
    flex-direction: column;
    border: 3px solid orange;
    border-radius: 10px;
-   padding: 50px 15px;
+   padding: 50px 15px 25px;
    position: relative;
    min-height: 145px;
    z-index: 1;
@@ -40,9 +40,10 @@
    position: absolute;
    top: 0;
    right: 0;
-   width: 80px;
-   top: -35px;
-   right: 285px;
+   width: 70px;
+   top: -30px;
+   /* right: 285px; */
+   left: 60px;
 }
 
 .list__item-btn {
@@ -189,7 +190,7 @@
 
 .list__item-inner {
    grid-column: 1;
-   padding: 5px 0;
+   /* padding: 5px 0; */
    font-weight: 700;
 }
 
@@ -229,7 +230,7 @@
 .list__body.card-view {
    display: grid;
    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-   gap: 16px;
+   gap: 20px 16px;
    grid-row: auto;
 }
  
@@ -284,12 +285,19 @@
 }
 
 .list__item.favorite-added .list__item-favorit {
-   background-color: #27367b;
+   background-color: #e07b06;
+   /* background-color: #bc7513; */
 }
 
 .list__item-favorit  {
-   min-width: 122px;
-   justify-content: space-between;
+   background-color: #27367b;
+}
+
+@media (min-width: 680px) {
+   .list__item-favorit  {
+      min-width: 122px;
+      justify-content: space-between;
+   }
 }
 /* -------------------------------------------------------- */
 

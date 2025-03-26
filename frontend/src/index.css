@@ -225,16 +225,17 @@ button {
   font-size: 35px;
   font-weight: 700;
   color: #27367b;
+  margin: 0;
 }
 
 .input {
   height: 50px; 
   padding: 10px 15px;
   font-size: 16px;
-  /* border: 2px solid #888; */
   border: 1px solid #27367b;
   border-radius: 10px;
   font-size: 16px;
+  font-family: 'Roboto', serif;
 }
 
 .input::placeholder {
@@ -245,16 +246,19 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-  /* border: 3px solid #0054f5; */
   border: 3px solid orange;
 }
 
-.list__head {
+.list-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 15px;
   margin: 30px 0;
+}
+
+.list-head--middle {
+  margin: 60px 0 30px;
 }
 
 .visually-hidden {
@@ -267,4 +271,15 @@ select:focus {
   clip: rect(0 0 0 0);
   white-space: nowrap;
   border: 0;
+}
+
+.genre-title {
+  text-align: center;
+  padding: 0 0 25px;
+  margin-bottom: 0;
+  color: #27367b;
+}
+
+.genre-group {
+  margin-bottom: 50px;
 }

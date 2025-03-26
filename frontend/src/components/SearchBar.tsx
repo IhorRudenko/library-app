@@ -14,7 +14,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchInput, setSearchInput, setS
         <input
           className="search__input input"
           type="text"
-          placeholder="🔍 Suche nach Titel oder Autor"
+          placeholder="Suche nach Titel oder Autor"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />

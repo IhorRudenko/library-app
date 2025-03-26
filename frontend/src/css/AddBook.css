@@ -13,7 +13,9 @@
    max-width: none;
    width: 100%;
    grid-column: span 2;
-   resize: vertical;
+   resize: none;
+   font-family: 'Roboto', sans-serif;
+   font-weight: 500;
 }
 
 .image-upload-label {

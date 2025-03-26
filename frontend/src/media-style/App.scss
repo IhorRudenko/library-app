@@ -96,7 +96,8 @@
    }
 
    .genre-title {
-      font-size: 20px;
+      font-size: 18px;
+      padding-bottom: 15px;
    }
 
    .list__deco-img {
@@ -118,13 +119,12 @@
 
    .add-book__toggle.collapsed::before,
    .add-book__toggle.expanded::before {
-      right: 15px;
-      width: 15px;
-      height: 15px;
+      right: 12px;
+      background-size: 15px;
    }
 
-   .list__head {
-      margin: 20px 0;
+   .list-head--middle {
+      margin: 50px 0 20px;
    }
 
    .add-book__form-container.expanded {
@@ -136,6 +136,15 @@
       width: auto;
       min-width: auto;
    }
+
+   .search__img {
+      width: 20px;
+   }
+
+  
+   
+
+   
 }
 
 @media (max-width: 767.98px) {
@@ -192,9 +201,22 @@
    .wrapper {
       padding-top: 55px;
    }
+
+   .list__body {
+      padding: 40px 10px 20px;
+   }
+
+   .list__item-inner,
+   .book-description {
+      font-size: 14px;
+   }
+
+    .list__item.active {
+      gap: 15px;
+    }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 679.98px) {
    .add-book__form {
       display: flex;
       flex-direction: column;
@@ -228,6 +250,68 @@
    .add-book__form-container.expanded {
       max-height: 405px;
   }
+
+  .list-head--top {
+     display: flex;
+     flex-direction: column-reverse;
+     gap: 30px;
+  }
+
+  .list-head__inner,
+  .add-book__toggle  {
+     width: 100%;
+  }
+
+   
+
+   .list__body.list-view {
+
+      
+      .list__item-delete span {
+         display: none;
+      }
+
+      .list__item-delete {
+         width: auto;
+         min-width: none;
+      }
+
+      .list__item-favorit {
+         width: auto;
+         min-width: none;
+      }
+
+      .list__item-favorit span {
+         display: none;
+      }
+
+
+      .list__item {
+         grid-template-columns: 1fr 80px;
+         grid-template-rows: 35px;
+         align-items: center;
+         gap: 15px;
+      }
+
+      .list__item.active {
+         grid-template-columns: 80px 1fr 80px;
+      }
+
+      .list__item-controls {
+         margin-left: auto;
+      }
+     
+      .list__item-btn {
+         padding: 0;
+         width: 35px;
+         height: 35px;
+         flex: 0 0 35px;
+      }
+
+   }
+   
+
+   
 }  
 
 @media (max-width: 575.98px) {
@@ -236,6 +320,45 @@
       flex-direction: column;
    }
  
+   .list-head__top {
+      display: flex;
+      flex-direction: column-reverse;
+      width: 100%;
+   }
+
+   .tabs {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+   }
+
+   .tabs__btn {
+      display: flex;
+      justify-content: center;
+   }
+
+   .add-book__toggle.collapsed {
+      width: 100%;
+   }
+
+   .list-head__inner {
+      width: 100%;
+   }
+
+   .list__body {
+      border: none;
+      padding: 30px 0 0;
+   }
+
+   .genre-title {
+      border-bottom: 3px solid orange;
+      padding-bottom: 15px;
+   }
+
+   .list__deco-img {
+      top: -40px;
+      left: 25px;
+  }
 }
 
 @media (max-width: 424.98px) {

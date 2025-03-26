@@ -27,7 +27,7 @@ import { BookWithStatus } from "../types/types";
 
   return (
     <div>
-      <div className="list__head">
+      <div className="list-head">
         <h2 className="list__title">Meine Leseliste</h2>
 
         <ViewToggle viewMode={viewMode} setViewMode={setViewMode} />
@@ -76,7 +76,7 @@ import { BookWithStatus } from "../types/types";
                 onClick={() => removeFromReadingList(book.id)}>
                   <img className="list__item-garbage" src="/images/delete.png" alt="Garbage" />
 
-                  löschen
+                  <span>löschen</span>
               </button>
             </div>
 

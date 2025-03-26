@@ -122,7 +122,10 @@ const sortedGenres = Object.entries(groupedBooks)
                       }}
                     >
                     <img className="list__item-star" src="/images/star.png" alt="Star" />
-                    {isFavorite(book.id) ? "hinzugefügt" : "zu Favoriten"}
+                    
+                    <span>
+                      {isFavorite(book.id) ? "hinzugefügt" : "zu Favoriten"}
+                    </span> 
                   </button>
 
                   <button
@@ -133,7 +136,9 @@ const sortedGenres = Object.entries(groupedBooks)
                     }}
                     >
                     <img className="list__item-garbage" src="/images/delete.png" alt="Garbage" />
-                    löschen
+                    
+                    <span>löschen</span>
+                  
                   </button>
                 </div>
 
