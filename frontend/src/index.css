@@ -1,6 +1,7 @@
 :root {
   --bg-color: #f3f3f3;
   --bg-dark: #fff;
+  --bg-gray: #fff;
   --text-color: #000;
   --text-accent: #27367b;
   --bg-header: #27367b;
@@ -15,6 +16,7 @@
 [data-theme='dark'] {
   --bg-color: #212121;
   --bg-dark: #000;
+  --bg-gray: #3d3d3d;
   --text-color: #fff;
   --text-accent: #fff;
   --bg-header: #000;
@@ -253,7 +255,8 @@ button {
   height: 50px; 
   padding: 10px 15px;
   font-size: 16px;
-  border: 1px solid #27367b;
+  /* border: 2px solid #27367b; */
+  border: 2px solid orange;
   border-radius: 10px;
   font-size: 16px;
   font-family: 'Roboto', serif;
@@ -267,7 +270,17 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-  border: 3px solid orange;
+  border: 2px solid #27367b;
+}
+
+[data-theme="dark"] .input {
+  border: 2px solid #27367b;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus {
+  border: 2px solid orange;
 }
 
 .list-head {

@@ -7,7 +7,7 @@
    position: relative;
    min-height: 145px;
    z-index: 1;
-   background-color: var(--bg-dark);
+   background-color: var(--bg-gray);
    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
