@@ -156,6 +156,7 @@ const App: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
 
+  console.log("📦 API URL:", apiUrl);
 
   // ----------------------------------------------------------------------------------
 
