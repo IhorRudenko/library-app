@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: my-json-server
+    name: my-library-backend
     env: node
     plan: free
     buildCommand: cd backend && npm install && npx tsc
