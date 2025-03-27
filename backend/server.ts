@@ -1,86 +1,65 @@
-
-import express, { Request, Response, RequestHandler } from 'express';
-import cors from 'cors';
-import mongoose from 'mongoose';
-import Book from './models/Book';
-import dotenv from 'dotenv';
-
-dotenv.config({ path: __dirname + "/.env" });
-
-const mongoURI = process.env.MONGO_URI || '';
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import fs from "fs";
 
 const app = express();
-const PORT = 3001;
+app.use(express.json({ limit: "15mb" }));
+app.use(cors());
+app.use(bodyParser.json({ limit: "5mb" }));
 
-app.use(cors({
-  origin: '*', // тимчасово відкрито для всіх, можна потім уточнити
-}));
+const booksFile = "books.json"; // Файл для збереження книг
 
-app.use(express.json());
-
-mongoose.connect("mongodb+srv://IhorRudenko:Oc2vi73F3@cluster0.gr4mtng.mongodb.net/my-library?retryWrites=true&w=majority")
-.then(() => console.log("MongoDB connected"))
-.catch(err => console.error("Connection failed:", err));
-
-console.log("MONGO_URI = ", process.env.MONGO_URI);
-
-// ------- API ROUTES ---------
-const router = express.Router();
-
-// GET all books
-router.get('/books', async (req, res) => {
+// 📌 Функція для завантаження книг з файлу (якщо файл є)
+const loadBooks = (): any[] => {
   try {
-    const books = await Book.find();
-    res.json(books);
-  } catch (err) {
-    res.status(500).json({ error: 'Не вдалося отримати книги' });
-  }
-});
-
-// POST new book
-router.post('/books', async (req, res) => {
-  try {
-    const newBook = new Book(req.body);
-    const savedBook = await newBook.save();
-    res.status(201).json(savedBook);
-  } catch (err) {
-    res.status(500).json({ error: 'Не вдалося додати книгу' });
-  }
-});
-
-// PUT update book
-router.put('/books/:id', (async (req: Request, res: Response) => {
-  try {
-    const updatedBook = await Book.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
-
-    if (!updatedBook) {
-      return res.status(404).json({ message: 'Книгу не знайдено' });
+    if (!fs.existsSync(booksFile)) {
+      fs.writeFileSync(booksFile, "[]", "utf-8"); // ✅ Створюємо файл, якщо його немає
     }
-
-    res.json(updatedBook);
-  } catch (err) {
-    res.status(500).json({ error: 'Помилка при оновленні книги' });
+    const data = fs.readFileSync(booksFile, "utf-8");
+    return JSON.parse(data);
+  } catch (error) {
+    console.error("❌ Помилка читання books.json:", error);
+    return [];
   }
-}) as RequestHandler);
+};
 
-// DELETE book
-router.delete('/books/:id', async (req, res) => {
+// 📌 Функція для запису книг у файл
+const saveBooks = (books: any[]) => {
   try {
-    await Book.findByIdAndDelete(req.params.id);
-    res.status(204).send();
-  } catch (err) {
-    res.status(500).json({ error: 'Помилка при видаленні книги' });
+    fs.writeFileSync(booksFile, JSON.stringify(books, null, 2), "utf-8"); // ✅ Записуємо у файл
+  } catch (error) {
+    console.error("❌ Помилка запису у books.json:", error);
   }
+};
+
+let books = loadBooks(); // ✅ Завантажуємо книги при старті сервера
+
+// 📌 Отримати всі книги
+app.get("/api/books", (req, res) => {
+  books = loadBooks(); // ✅ Оновлюємо книги перед відправкою
+  res.json(books);
 });
 
-// Mount all /api routes
-app.use('/api', router);
+// 📌 Додати нову книгу
+app.post("/books", (req, res) => {
+  books = loadBooks(); // ✅ Оновлюємо список перед додаванням
+  const newBook = { id: Date.now(), ...req.body };
+  books.push(newBook);
+  saveBooks(books); // ✅ Записуємо у файл
+  res.status(201).json(newBook);
+});
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+// 📌 Видалити книгу за ID
+app.delete("/books/:id", (req, res) => {
+  books = loadBooks(); // ✅ Оновлюємо список перед видаленням
+  const bookId = parseInt(req.params.id);
+  books = books.filter((book) => book.id !== bookId);
+  saveBooks(books); // ✅ Записуємо оновлений список у файл
+  res.json({ message: "✅ Книга видалена" });
+});
+
+// 📌 Запуск сервера
+app.listen(3001, () => {
+  console.log("✅ Сервер працює на http://localhost:3001");
 });
