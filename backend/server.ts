@@ -38,6 +38,7 @@ const saveBooks = (books: any[]) => {
 
 let books = loadBooks(); // ✅ Завантажуємо книги при старті сервера
 
+
 // 📌 Отримати всі книги
 app.get("/api/books", (req, res) => {
   books = loadBooks(); // ✅ Оновлюємо книги перед відправкою
@@ -59,7 +60,7 @@ app.delete("/books/:id", (req, res) => {
   const bookId = parseInt(req.params.id);
   books = books.filter((book) => book.id !== bookId);
   saveBooks(books); // ✅ Записуємо оновлений список у файл
-  res.json({ message: "✅ Книга видалена" });
+  res.json({ message: "Книга видалена" });
 });
 
 // 📌 Запуск сервера
