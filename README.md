@@ -6,7 +6,6 @@ Dieses Projekt wurde im Rahmen der technischen Einstellungsaufgabe für die Stel
 🚀 Funktionen
 
 📖 Liste aller Bücher anzeigen
-
 ➕ Neues Buch hinzufügen
 🔍 Bücher suchen und filtern nach Titel oder Autor
 ❌ Buch löschen
@@ -18,12 +17,14 @@ Dieses Projekt wurde im Rahmen der technischen Einstellungsaufgabe für die Stel
 💾 Speicherung der Bücher in einer lokalen Datei books.json (Backend)
 🛠 Technologien
 
+
 🔹 Backend
 
 Node.js
 Express
 TypeScript
 Datenspeicherung in JSON (books.json)
+
 
 🔹 Frontend
 
