@@ -1,14 +1,13 @@
-export type Book = {
-  id: number;
+export interface Book {
+  id: string; // ОБОВ’ЯЗКОВО string
   title: string;
   author: string;
   year: number;
-  image: string;
-  description: string;
-  genre: string | string[]; // ← це важливо!
-};
+  description?: string;
+  image?: string;
+  genre?: string;
+}
 
-
-export type BookWithStatus = Book & {
+export interface BookWithStatus extends Book {
   read: boolean;
-};
+}

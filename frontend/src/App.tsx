@@ -26,10 +26,20 @@ const App: React.FC = () => {
   }, [readingList]);
 
   const fetchBooks = async () => {
-    const response = await fetch("http://localhost:3001/books");
+    const response = await fetch("http://localhost:3001/api/books");
     const data = await response.json();
-    setBooks(data);
+  
+    const booksWithId = data.map((book: any) => ({
+      ...book,
+      id: book._id, // перетворення
+    }));
+  
+    setBooks(booksWithId);
+    
+    console.log("📚 Книги з id:", booksWithId);
+
   };
+  
   
 
   useEffect(() => {
@@ -48,12 +58,12 @@ const App: React.FC = () => {
   };
   
   
-  const toggleReadStatus = async (id: number) => {
+  const toggleReadStatus = async (id: string) => {
     const book = readingList.find((b) => b.id === id);
     if (!book) return;
   
     try {
-      const response = await fetch(`http://localhost:3001/books/${id}`, {
+      const response = await fetch(`http://localhost:3001/api/books/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -71,9 +81,10 @@ const App: React.FC = () => {
     }
   };
   
+  
  
   
-  const removeFromReadingList = (id: number) => {
+  const removeFromReadingList = (id: string) => {
     setReadingList(readingList.filter(book => book.id !== id));
   };
 
@@ -102,20 +113,15 @@ const App: React.FC = () => {
 
   const [readingListViewMode, setReadingListViewMode] = useState<"grid" | "list">("list");
 
-  const handleDeleteBook = async (id: number) => {
+  const handleDeleteBook = async (id: string) => {
     try {
       // Видалення з сервера (json-server)
-      await fetch(`http://localhost:3001/books/${id}`, {
+      await fetch("http://localhost:3001/api/books", {
         method: "DELETE",
       });
   
-      // Оновлення списку книг
       setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
-  
-      // Оновлення списку для читання
       setReadingList((prevList) => prevList.filter((book) => book.id !== id));
-  
-      // Оновлення localStorage
       localStorage.setItem(
         "readingList",
         JSON.stringify(readingList.filter((book) => book.id !== id))

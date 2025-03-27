@@ -6,8 +6,8 @@ import { BookWithStatus } from "../types/types";
 
   type ReadingListProps = {
     readingList: BookWithStatus[];
-    toggleReadStatus: (id: number) => void;
-    removeFromReadingList: (id: number) => void;
+    toggleReadStatus: (id: string) => void;
+    removeFromReadingList: (id: string) => void;
     viewMode: 'list' | 'grid';
     setViewMode: (mode: "list" | "grid") => void;
   };
@@ -20,7 +20,7 @@ import { BookWithStatus } from "../types/types";
     setViewMode
   }) => {
 
-  const [showDescriptionId, setShowDescriptionId] = useState<number | null>(null);
+  const [showDescriptionId, setShowDescriptionId] = useState<string | null>(null);
 
 
   // --------------------------------------------------------------

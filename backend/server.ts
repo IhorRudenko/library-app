@@ -7,13 +7,18 @@ import dotenv from 'dotenv';
 
 dotenv.config({ path: __dirname + "/.env" });
 
+const mongoURI = process.env.MONGO_URI || '';
+
 // const app = express();
 // const PORT = process.env.PORT || 3001;
 
 const app = express();
 const PORT = 3001;
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+}));
+
 app.use(express.json());
 
 // -- перевірка log
@@ -25,12 +30,12 @@ console.log("MONGO_URI = ", process.env.MONGO_URI);
 
 
 // Маршрут для отримання всіх книг
-app.get('/books', async (req, res) => {
+app.get('/api/books', async (req, res) => {
   try {
     const books = await Book.find();
     res.json(books);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch books' });
+  } catch (err) {
+    res.status(500).json({ error: 'Не вдалося отримати книги' });
   }
 });
 

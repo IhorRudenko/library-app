@@ -25,7 +25,7 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
       description,
     };
   
-    await fetch("http://localhost:3001/books", {
+    await fetch("http://localhost:5000/api/books", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,23 +42,24 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
   
   const saveBook = (imageData: string) => {
     const newBook: Book = {
-      id: Date.now(),
+      id: Date.now().toString(),
       title,
       author,
       year: Number(year),
       description,
       image: imageData,
-      genre, 
+      genre: Array.isArray(genre) ? genre[0] : genre, // <- ось тут
     };
 
          
-    fetch("http://localhost:3001/books", {
+    fetch("http://localhost:3001/api/books", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newBook),
     })
+    
       .then((res) => res.json())
       .then((data) => {
         setBooks([...books, data]);
