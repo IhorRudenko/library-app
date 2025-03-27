@@ -15,7 +15,7 @@ type BookWithStatus = Book & {
 
 const App: React.FC = () => {
 
-  const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const [books, setBooks] = useState<Book[]>([]);
 
@@ -99,11 +99,25 @@ const App: React.FC = () => {
   const handleDeleteBook = async (id: number) => {
     try {
       // Видалення з сервера (json-server)
-      await fetch(`${apiUrl}/books`, {
-        method: "DELETE",
-      });
-
-      await fetch(`${process.env.REACT_APP_API_URL}/books`);
+      const handleDeleteBook = async (id: number) => {
+        try {
+          await fetch(`${apiUrl}/books/${id}`, {
+            method: "DELETE",
+          });
+      
+          // Оновлюємо книги та список читання
+          setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
+          setReadingList((prevList) => prevList.filter((book) => book.id !== id));
+      
+          localStorage.setItem(
+            "readingList",
+            JSON.stringify(readingList.filter((book) => book.id !== id))
+          );
+        } catch (error) {
+          console.error("❌ Помилка під час видалення книги:", error);
+        }
+      };
+      
 
   
       // Оновлення списку книг
