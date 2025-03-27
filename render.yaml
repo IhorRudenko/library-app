@@ -3,5 +3,5 @@ services:
     name: my-json-server
     env: node
     plan: free
-    buildCommand: npm install
-    startCommand: npx json-server --watch books.json --port $PORT
+    buildCommand: cd backend && npm install && npx tsc
+    startCommand: node backend/dist/server.js
