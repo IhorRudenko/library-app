@@ -2,6 +2,9 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import fs from "fs";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 app.use(express.json({ limit: "15mb" }));
@@ -60,6 +63,8 @@ app.delete("/books/:id", (req, res) => {
 });
 
 // 📌 Запуск сервера
-app.listen(3001, () => {
-  console.log("✅ Сервер працює на http://localhost:3001");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`✅ Сервер працює на http://localhost:${PORT}`);
 });
