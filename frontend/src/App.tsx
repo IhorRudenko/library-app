@@ -164,12 +164,14 @@ const App: React.FC = () => {
             <div className="list-head__inner">
               <h2 className="visually-hidden">Neues Buch hinzufügen</h2>
                 
-              <button
-                className={`add-book__toggle btn-accent ${isExpanded ? "collapsed" : "expanded"}`}
-                onClick={() => setIsExpanded(prev => !prev)}
-              >
-                Neues Buch hinzufügen
-              </button>
+              {activeTab === "all" && (
+                <button
+                  className={`add-book__toggle btn-accent ${isExpanded ? "collapsed" : "expanded"}`}
+                  onClick={() => setIsExpanded(prev => !prev)}
+                >
+                  Neues Buch hinzufügen
+                </button>
+              )}
             </div>
 
             <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -177,6 +179,7 @@ const App: React.FC = () => {
     
           {/* Умовне відображення вкладок */}
           {activeTab === "all" && (
+            
             <>
               <div className="main">
                 <div className={`add-book__form-container ${isExpanded ? "collapsed" : "expanded"}`}>
