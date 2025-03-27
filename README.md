@@ -1,63 +1,63 @@
-# 📚 Library App – Testaufgabe
+📚 Bibliothek App – Testaufgabe
 
-Dieses Projekt wurde im Rahmen der technischen Einstellungsaufgabe für die Stelle  
-**Fachinformatiker für Anwendungsentwicklung** bei **Mittwald CM Service GmbH & Co. KG** erstellt.
+Dieses Projekt wurde im Rahmen der technischen Einstellungsaufgabe für die Stelle Fachinformatiker für Anwendungsentwicklung  erstellt.
 
----
 
-## 🚀 Funktionen
+🚀 Funktionen
 
-- 📖 Liste aller Bücher anzeigen
-- ➕ Neues Buch hinzufügen
-- ❌ Buch löschen
-- 💾 Speicherung der Bücher in einer lokalen Datei `books.json` (Backend)
+📖 Liste aller Bücher anzeigen
 
----
+➕ Neues Buch hinzufügen
+🔍 Bücher suchen und filtern nach Titel oder Autor
+❌ Buch löschen
+📌 Bücher zur Leseliste hinzufügen und entfernen
+✅ Status der gelesenen Bücher verwalten
+🌓 Hell- und Dunkelmodus
+🖥️ Wechsel zwischen Listen- und Rasteransicht
+📱 Responsive und adaptive Benutzeroberfläche
+💾 Speicherung der Bücher in einer lokalen Datei books.json (Backend)
+🛠 Technologien
 
-## 🛠 Technologien
+🔹 Backend
 
-### 🔹 Backend
-- Node.js
-- Express
-- TypeScript
-- Datenspeicherung in JSON (`books.json`)
+Node.js
+Express
+TypeScript
+Datenspeicherung in JSON (books.json)
 
-### 🔹 Frontend
-- React
-- TypeScript
-- Axios (für HTTP-Anfragen)
-- CSS (Standard-Styling)
+🔹 Frontend
 
----
+React
+TypeScript
+Axios (für HTTP-Anfragen)
+SCSS
 
-## 📦 Lokale Ausführung
 
-### 🔧 Backend starten
-```bash
+📦 Lokale Ausführung
+
+🔧 Backend starten
+
 cd backend
 npm install
 npx ts-node server.ts
-```
-Server wird auf `http://localhost:3001` ausgeführt.
 
----
+Server wird auf http://localhost:3001 ausgeführt.
 
-### 🌐 Frontend starten
-```bash
+
+🌐 Frontend starten
+
 cd frontend
 npm install
 npm start
-```
-App ist unter `http://localhost:3000` erreichbar.
 
----
+App ist unter http://localhost:3000 erreichbar.
 
-## 🧭 Projektstruktur
 
-```
+🧭 Projektstruktur
+
 my-library/
 ├── backend/
-│   ├── books.json           # Lokale "Datenbank" für Bücher
+│   ├── books.json           # Lokale \"Datenbank\" für Bücher
 │   ├── server.ts            # Express-Server
 │   ├── package.json         # Abhängigkeiten
 │   └── tsconfig.json        # TypeScript-Konfiguration
@@ -67,32 +67,37 @@ my-library/
 │   │   ├── App.tsx
 │   │   ├── components/
 │   │   │   ├── AddBook.tsx
-│   │   │   └── BookList.tsx
+│   │   │   ├── BookList.tsx
+│   │   │   ├── ReadingList.tsx
+│   │   │   ├── Tabs.tsx
+│   │   │   ├── ViewToggle.tsx
+│   │   │   └── SearchBar.tsx
 │   ├── public/
 │   ├── package.json
 │   └── tsconfig.json
 │
 ├── .gitignore
 ├── README.md
-```
 
----
 
-## 📝 Zukünftige Verbesserungen
+🌐 Live-Demo
 
-- ✏️ Bücher bearbeiten (nicht nur löschen)
-- 🔐 Benutzer-Login-System
-- 💽 Umstieg von `books.json` auf echte Datenbank (z. B. MongoDB, SQLite)
-- 🌍 Deployment in der Cloud (Render, Vercel)
+Die Anwendung ist online verfügbar: library-app.vercel.app
 
----
+📝 Zukünftige Verbesserungen
+✏️ Bücher bearbeiten (nicht nur löschen)
+🔐 Benutzer-Login-System
+💽 Umstieg von books.json auf echte Datenbank (z. B. MongoDB, SQLite)
+...
 
-## 📧 Kontakt
 
-**Autor:** Ihor Rudenko  
-📬 E-Mail: i.rudenko108@gmail.com  
-🌐 GitHub: [github.com/IhorRudenko](https://github.com/IhorRudenko)
+📧 Kontakt
 
----
+Autor: Ihor Rudenko📬 
+E-Mail: i.rudenko108@gmail.com🌐 
+GitHub: github.com/IhorRudenko
 
-> 🛠 Dieses Projekt befindet sich noch in der Entwicklung. Feedback ist willkommen!
+
+
+🛠 Dieses Projekt befindet sich noch in der Entwicklung. Feedback ist willkommen!
+
