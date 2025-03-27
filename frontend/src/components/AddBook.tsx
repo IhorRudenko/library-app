@@ -9,6 +9,9 @@ type AddBookProps = {
 };
 
 const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
+
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [year, setYear] = useState<number | "">("");
@@ -84,13 +87,12 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
 
   const [description, setDescription] = useState("");
 
-  const [image, setImage] = useState("");
+  // const [image, setImage] = useState("");
 
   const [imageFile, setImageFile] = useState<File | null>(null);
 
 
 
-  const apiUrl = process.env.REACT_APP_API_URL;
 
 
 

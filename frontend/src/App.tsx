@@ -32,7 +32,7 @@ const App: React.FC = () => {
 
   const fetchBooks = async () => {
     const response = await fetch(`${apiUrl}/books`);
-    const data = await response.json();
+    const data = await response.json(); 
   
     const booksWithId = data.map((book: any) => ({
       ...book,
@@ -41,6 +41,8 @@ const App: React.FC = () => {
   
     setBooks(booksWithId);
     console.log("📚 Книги з id:", booksWithId);
+
+    console.log("📚 JSON з API:", data);
   };
   
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -92,7 +94,7 @@ const App: React.FC = () => {
 
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
 
-  const [image, setImage] = useState("");
+  // const [image, setImage] = useState("");
 
   const [readingListViewMode, setReadingListViewMode] = useState<"grid" | "list">("list");
 
@@ -105,7 +107,6 @@ const App: React.FC = () => {
             method: "DELETE",
           });
       
-          // Оновлюємо книги та список читання
           setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
           setReadingList((prevList) => prevList.filter((book) => book.id !== id));
       
@@ -114,9 +115,10 @@ const App: React.FC = () => {
             JSON.stringify(readingList.filter((book) => book.id !== id))
           );
         } catch (error) {
-          console.error("❌ Помилка під час видалення книги:", error);
+          console.error("❌ Помилка при видаленні книги:", error);
         }
       };
+      
       
 
   

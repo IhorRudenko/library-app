@@ -22,7 +22,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchInput, setSearchInput, setS
         <button
           className="search__btn search__btn--find btn btn-accent"
           onClick={() => setSearchTerm(searchInput)}
-          style={{ padding: "8px 16px" }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              setSearchTerm(searchInput);
+            }
+          }}
         >
           <img className="search__img" src="../images/search.png" alt="Deco" />
          

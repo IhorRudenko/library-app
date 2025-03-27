@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Book } from "../types/types";
 import "../css/BookList.css";
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 
 interface BookListProps {
   books: Book[];
