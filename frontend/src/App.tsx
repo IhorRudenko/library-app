@@ -102,6 +102,9 @@ const App: React.FC = () => {
       await fetch(`${apiUrl}/books`, {
         method: "DELETE",
       });
+
+      await fetch(`${process.env.REACT_APP_API_URL}/books`);
+
   
       // Оновлення списку книг
       setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));

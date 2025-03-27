@@ -204,8 +204,8 @@
    font-weight: 700;
 }
 
-.list__item-inner p {
-   display: none;
+.list__item-inner > p {
+   display: none!important;
 }
 
 .list__item-controls {
