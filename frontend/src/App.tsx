@@ -14,6 +14,9 @@ type BookWithStatus = Book & {
 };
 
 const App: React.FC = () => {
+
+  const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
+
   const [books, setBooks] = useState<Book[]>([]);
 
   const [readingList, setReadingList] = useState<BookWithStatus[]>(() => {
@@ -28,7 +31,7 @@ const App: React.FC = () => {
  
 
   const fetchBooks = async () => {
-    const response = await fetch(`${apiUrl}/api/books`);
+    const response = await fetch(`${apiUrl}/books`);
     const data = await response.json();
   
     const booksWithId = data.map((book: any) => ({
@@ -40,6 +43,7 @@ const App: React.FC = () => {
     console.log("📚 Книги з id:", booksWithId);
   };
   
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     fetchBooks();
@@ -95,7 +99,7 @@ const App: React.FC = () => {
   const handleDeleteBook = async (id: number) => {
     try {
       // Видалення з сервера (json-server)
-      await fetch(`${apiUrl}/api/books`, {
+      await fetch(`${apiUrl}/books`, {
         method: "DELETE",
       });
   
@@ -134,7 +138,6 @@ const App: React.FC = () => {
   
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
 
   // ----------------------------------------------------------------------------------

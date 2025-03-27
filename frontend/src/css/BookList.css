@@ -204,6 +204,10 @@
    font-weight: 700;
 }
 
+.list__item-inner p {
+   display: none;
+}
+
 .list__item-controls {
    grid-column: 2;
 }

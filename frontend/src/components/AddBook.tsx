@@ -52,14 +52,19 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
     };
 
      
-    fetch("https://my-json-server-jqlp.onrender.com", {
+    fetch(`${apiUrl}/books`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newBook),
     })
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to add book");
+      }
+      return res.json();
+    })
     .then((data) => {
       setBooks([...books, data]);
       setTitle("");
@@ -72,6 +77,7 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
     .catch((err) => {
       console.error("❌ Помилка при додаванні:", err);
     });
+    
   };
   
   
@@ -81,6 +87,11 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
   const [image, setImage] = useState("");
 
   const [imageFile, setImageFile] = useState<File | null>(null);
+
+
+
+  const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001/api";
+
 
 
   // -----------------------------------------------------------------
