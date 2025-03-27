@@ -29,5 +29,9 @@
   },
   "dependencies": {
     "json-server": "^0.17.4"
+  }, 
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js"
   }
 }
