@@ -5,7 +5,7 @@ const bookSchema = new mongoose.Schema({
   author: String,
   year: Number,
   description: String,
-  genre: String,
+  genre: [String],
   image: String,
   read: { type: Boolean, default: false },
 });

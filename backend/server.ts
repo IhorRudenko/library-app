@@ -4,36 +4,34 @@ import mongoose from 'mongoose';
 import Book from './models/Book';
 import dotenv from 'dotenv';
 
-dotenv.config();
+
+dotenv.config({ path: __dirname + "/.env" });
+
+// const app = express();
+// const PORT = process.env.PORT || 3001;
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
 
-
-
-
-// Підключення до бази даних
-
-
-// mongoose.connect(process.env.MONGO_URI || '', {
-// })
-//   .then(() => console.log("MongoDB connected"))
-//   .catch(err => console.error("Connection failed:", err));
-
+// -- перевірка log
 mongoose.connect("mongodb+srv://IhorRudenko:Oc2vi73F3@cluster0.gr4mtng.mongodb.net/my-library?retryWrites=true&w=majority")
-  .then(() => console.log("MongoDB connected"))
-  .catch(err => console.error("Connection failed:", err));
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.error("Connection failed:", err));
+
+console.log("MONGO_URI = ", process.env.MONGO_URI);
 
 
-
-
-// Отримати всі книги
+// Маршрут для отримання всіх книг
 app.get('/books', async (req, res) => {
-  const books = await Book.find();
-  res.json(books);
+  try {
+    const books = await Book.find();
+    res.json(books);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch books' });
+  }
 });
 
 // Додати нову книгу

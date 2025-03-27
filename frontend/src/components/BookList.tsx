@@ -37,18 +37,21 @@ const BookList: React.FC<BookListProps> = ({
   });
 
   const groupedBooks: Record<string, Book[]> = {};
-filteredBooks.forEach((book) => {
-  const genres = Array.isArray(book.genre)
-    ? book.genre
-    : book.genre.split(",").map((g) => g.trim());
 
-  genres.forEach((genre) => {
-    if (!groupedBooks[genre]) {
-      groupedBooks[genre] = [];
-    }
-    groupedBooks[genre].push(book);
+  filteredBooks.forEach((book) => {
+    const genres = Array.isArray(book.genre)
+    ? book.genre
+    : typeof book.genre === "string"
+      ? book.genre.split(",").map((g) => g.trim())
+      : [];
+
+    genres.forEach((genre) => {
+      if (!groupedBooks[genre]) {
+        groupedBooks[genre] = [];
+      }
+      groupedBooks[genre].push(book);
+    });
   });
-});
 
 // === 2. Отримуємо жанри у порядку популярності ===
 const sortedGenres = Object.entries(groupedBooks)
