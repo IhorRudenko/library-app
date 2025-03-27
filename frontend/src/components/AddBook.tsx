@@ -59,19 +59,19 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
       },
       body: JSON.stringify(newBook),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        setBooks([...books, data]);
-        setTitle("");
-        setAuthor("");
-        setYear("");
-        setDescription("");
-        setImageFile(null);
-        console.log("✅ Книга додана:", data);
-      })
-      .catch((err) => {
-        console.error("❌ Помилка при додаванні:", err);
-      });
+    .then((res) => res.json())
+    .then((data) => {
+      setBooks([...books, data]);
+      setTitle("");
+      setAuthor("");
+      setYear("");
+      setDescription("");
+      setImageFile(null);
+      console.log("✅ Книга додана:", data);
+    })
+    .catch((err) => {
+      console.error("❌ Помилка при додаванні:", err);
+    });
   };
   
   

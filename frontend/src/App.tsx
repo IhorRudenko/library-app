@@ -25,12 +25,21 @@ const App: React.FC = () => {
     localStorage.setItem("readingList", JSON.stringify(readingList));
   }, [readingList]);
 
-  const fetchBooks = () => {
-    fetch("https://my-json-server-jqlp.onrender.com")
-      .then((res) => res.json())
-      .then((data) => setBooks(data))
-      .catch((error) => console.error("Помилка завантаження:", error));
+ 
+
+  const fetchBooks = async () => {
+    const response = await fetch(`${apiUrl}/api/books`);
+    const data = await response.json();
+  
+    const booksWithId = data.map((book: any) => ({
+      ...book,
+      id: book._id,
+    }));
+  
+    setBooks(booksWithId);
+    console.log("📚 Книги з id:", booksWithId);
   };
+  
 
   useEffect(() => {
     fetchBooks();
@@ -86,7 +95,7 @@ const App: React.FC = () => {
   const handleDeleteBook = async (id: number) => {
     try {
       // Видалення з сервера (json-server)
-      await fetch(`https://my-json-server-jqlp.onrender.com/${id}`, {
+      await fetch(`${apiUrl}/api/books`, {
         method: "DELETE",
       });
   
@@ -125,7 +134,8 @@ const App: React.FC = () => {
   
   const [isExpanded, setIsExpanded] = useState(false);
 
-  
+  const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
+
 
   // ----------------------------------------------------------------------------------
 
