@@ -1,8 +1,8 @@
 import express, { Request, Response, RequestHandler } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 import Book from './models/Book';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -12,11 +12,23 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-// Підключення до бази даних
-mongoose.connect(process.env.MONGO_URI || '')
 
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('MongoDB error:', err));
+
+
+// Підключення до бази даних
+
+
+// mongoose.connect(process.env.MONGO_URI || '', {
+// })
+//   .then(() => console.log("MongoDB connected"))
+//   .catch(err => console.error("Connection failed:", err));
+
+mongoose.connect("mongodb+srv://IhorRudenko:Oc2vi73F3@cluster0.gr4mtng.mongodb.net/my-library?retryWrites=true&w=majority")
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.error("Connection failed:", err));
+
+
+
 
 // Отримати всі книги
 app.get('/books', async (req, res) => {
