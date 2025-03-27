@@ -20,5 +20,14 @@
     "@types/node": "^22.13.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
+  },
+  "name": "my-json-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "json-server --watch books.json --port 3001"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
   }
 }

@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: my-json-server
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npx json-server --watch books.json --port $PORT
