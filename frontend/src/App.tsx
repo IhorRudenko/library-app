@@ -32,7 +32,12 @@ const App: React.FC = () => {
 
   const fetchBooks = async () => {
     const response = await fetch(`${apiUrl}/books`);
-    const data = await response.json(); 
+    if (!response.ok) {
+      const text = await response.text(); // ← подивитися, що повернулося
+      throw new Error(`❌ Статус ${response.status}: ${text}`);
+    }
+
+const data = await response.json();
   
     const booksWithId = data.map((book: any) => ({
       ...book,

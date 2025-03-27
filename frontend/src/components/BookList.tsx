@@ -72,10 +72,6 @@ const sortedGenres = Object.entries(groupedBooks)
   );
 
 
-  
-  // -----------------------------------------------------
-
-
   return (
     <div className={`book-list ${viewMode}`}>
       {sortedGenreEntries.map(([genre, booksInGenre]) => (
@@ -84,9 +80,9 @@ const sortedGenres = Object.entries(groupedBooks)
 
          <ul className={`list__body ${viewMode === "grid" ? "card-view" : "list-view"}`}>
            
-            <p className={`list__negativ ${filteredBooks.length === 0 ? "active" : ""}`}>
+            {/* <p className={`list__negativ ${filteredBooks.length === 0 ? "active" : ""}`}>
               keine Ergebnisse gefunden
-            </p>
+            </p> */}
 
             <img className="list__deco-img" src="/images/book-deco.png" alt="Deco" />
 

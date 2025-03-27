@@ -34,8 +34,8 @@ import { BookWithStatus } from "../types/types";
       </div>   
 
       {readingList.length === 0 ? (
-      <p className="empty-message">Noch nichts zur Leseliste hinzugefügt.</p>
-    ) : (
+        <p className="empty-message">Noch nichts zur Leseliste hinzugefügt.</p>
+      ) : (
 
       <ul className={`list__body ${viewMode === "grid" ? "card-view" : "list-view"}`}>
         {readingList.map((book) => (
