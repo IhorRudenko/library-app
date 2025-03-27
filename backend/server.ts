@@ -60,7 +60,7 @@ app.delete("/books/:id", (req, res) => {
   const bookId = parseInt(req.params.id);
   books = books.filter((book) => book.id !== bookId);
   saveBooks(books); // ✅ Записуємо оновлений список у файл
-  res.json({ message: "Книга видалена" });
+  res.json({ message: "✅ Книга видалена" });
 });
 
 // 📌 Запуск сервера
