@@ -26,7 +26,7 @@ const App: React.FC = () => {
   }, [readingList]);
 
   const fetchBooks = () => {
-    fetch("http://localhost:3001/books")
+    fetch("https://my-json-server-jqlp.onrender.com")
       .then((res) => res.json())
       .then((data) => setBooks(data))
       .catch((error) => console.error("Помилка завантаження:", error));
@@ -86,7 +86,7 @@ const App: React.FC = () => {
   const handleDeleteBook = async (id: number) => {
     try {
       // Видалення з сервера (json-server)
-      await fetch(`http://localhost:3001/books/${id}`, {
+      await fetch(`https://my-json-server-jqlp.onrender.com/${id}`, {
         method: "DELETE",
       });
   
@@ -124,6 +124,8 @@ const App: React.FC = () => {
   }, [scrolled]);
   
   const [isExpanded, setIsExpanded] = useState(false);
+
+  
 
   // ----------------------------------------------------------------------------------
 
