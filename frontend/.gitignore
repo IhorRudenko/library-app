@@ -73,7 +73,7 @@ yarn-error.log*
                  className={`list__item-btn list__item-favorit ${isFavorite ? "favorite-added" : ""}`}
                  onClick={(e) => {
                    e.stopPropagation(); // щоб не відкривався опис
-                   addToReadingList(book);
+                   toggleInReadingList(book);
                  }}
                >
                  <img className="list__item-star" src="/images/star.png" alt="Star" />

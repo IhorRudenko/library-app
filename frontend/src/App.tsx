@@ -32,13 +32,22 @@ const App: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
 
   const [readingList, setReadingList] = useState<BookWithStatus[]>(() => {
-    const saved = localStorage.getItem("readingList");
-    return saved ? JSON.parse(saved) : [];
+    const storedList = localStorage.getItem("readingList");
+    if (!storedList) return [];
+    try {
+      return JSON.parse(storedList);
+    } catch {
+      return [];
+    }
   });
 
   useEffect(() => {
-    localStorage.setItem("readingList", JSON.stringify(readingList));
-  }, [readingList]);
+    const stored = localStorage.getItem("readingList");
+    if (stored) {
+      const parsed: Partial<BookWithStatus>[] = JSON.parse(stored);
+      setReadingList(parsed.map((book: any) => ({ ...book, read: book.read ?? false })) as BookWithStatus[]);
+    }
+  }, []);
 
  
 
@@ -160,8 +169,34 @@ const data = await response.json();
   
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const toggleInReadingList = (book: Book) => {
+    const bookId = book._id || book.id;
+    const exists = readingList.some((item) => item._id === bookId || item.id === bookId);
+  
+    let updatedList: BookWithStatus[];
+  
+    if (exists) {
+      updatedList = readingList.filter((item) => item._id !== bookId && item.id !== bookId);
+    } else {
+      updatedList = [...readingList, { ...book, read: false }];
+    }
+  
+    setReadingList(updatedList);
+    localStorage.setItem("readingList", JSON.stringify(updatedList));
+  };
+
+
+
+
+
+
+
+   
 
   console.log("📦 API URL:", apiUrl);
+
+  console.log("🧪 Поточний localStorage:", localStorage.getItem("readingList"));
+
 
   // ----------------------------------------------------------------------------------
 
@@ -240,16 +275,17 @@ const data = await response.json();
                   <ViewToggle viewMode={viewMode} setViewMode={setViewMode} />
 
                 </div>
-
+                
                 <BookList
                   books={books}
                   setBooks={setBooks}
-                  addToReadingList={toggleReadingList}
+                  toggleInReadingList={toggleInReadingList} // ✅ правильна пропса
                   searchTerm={searchTerm}
                   viewMode={viewMode}
                   readingList={readingList}
                   onDeleteBook={handleDeleteBook}
                 />
+
               </div>
             </>
           )}
@@ -257,13 +293,13 @@ const data = await response.json();
           {/* -- ReadingList ---------------------------------------------- */}
     
           {activeTab === "readingList" && (
-            <ReadingList
-              readingList={readingList}
-              toggleReadStatus={toggleReadStatus}
-              removeFromReadingList={removeFromReadingList}
-              viewMode={viewMode}
-              setViewMode={setViewMode}
-            />
+          <ReadingList
+            readingList={readingList}
+            toggleReadStatus={toggleReadStatus}
+            removeFromReadingList={removeFromReadingList}
+            viewMode={viewMode}
+            setViewMode={setViewMode}
+          />
           )}
         </div>
       </div>

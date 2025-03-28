@@ -5,17 +5,17 @@ import "../css/BookList.css";
 interface BookListProps {
   books: Book[];
   setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
-  addToReadingList: (book: Book) => void;
   searchTerm: string;
   viewMode: "list" | "grid";
   readingList: Book[];
   onDeleteBook: (id: string) => void;
+  toggleInReadingList: (book: Book) => void;
 }
 
 const BookList: React.FC<BookListProps> = ({
   books,
   setBooks,
-  addToReadingList,
+  toggleInReadingList,
   searchTerm,
   viewMode,
   readingList,
@@ -23,10 +23,8 @@ const BookList: React.FC<BookListProps> = ({
 }) => {
   const [showDescriptionId, setShowDescriptionId] = useState<string | null>(null);
 
-  const isFavorite = (bookId: string | undefined): boolean => {
-    return readingList.some(
-      (book) => (book._id || book.id?.toString()) === bookId
-    );
+  const isFavorite = (bookId: string): boolean => {
+    return readingList.some((book) => String(book._id || book.id) === bookId);
   };
 
   const filteredBooks = books.filter((book) => {
@@ -71,7 +69,8 @@ const BookList: React.FC<BookListProps> = ({
             <img className="list__deco-img" src="/images/book-deco.png" alt="Deco" />
 
             {booksInGenre.map((book) => {
-              const bookId = (book._id || book.id)?.toString();
+              const bookId = String(book._id || book.id);
+              
               if (!bookId) return null;
 
               return (
@@ -106,7 +105,7 @@ const BookList: React.FC<BookListProps> = ({
                       }`}
                       onClick={(e) => {
                         e.stopPropagation();
-                        addToReadingList(book);
+                        toggleInReadingList(book);
                       }}
                     >
                       <img className="list__item-star" src="/images/star.png" alt="Star" />
