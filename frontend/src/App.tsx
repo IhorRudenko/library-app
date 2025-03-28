@@ -6,14 +6,26 @@ import BookList from "./components/BookList";
 import ReadingList from "./components/ReadingList";
 import ViewToggle from "./components/ViewToggle";
 import { Book } from "./types/types";
-
 import './media-style/App.scss';
+
+
+
+const API = "https://my-library-backend-swb1.onrender.com/api";
 
 type BookWithStatus = Book & {
   read: boolean;
 };
 
 const App: React.FC = () => {
+  
+  const deleteBook = async (id: string) => {
+    const res = await fetch(`${API}/books/${id}`, {
+      method: "DELETE",
+    });
+    if (!res.ok) {
+      throw new Error("❌ Не вдалося видалити книгу");
+    }
+  };
 
   const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -103,46 +115,32 @@ const data = await response.json();
 
   const [readingListViewMode, setReadingListViewMode] = useState<"grid" | "list">("list");
 
-  const handleDeleteBook = async (id: number) => {
+  const handleDeleteBook = async (id: string) => {
     try {
-      // Видалення з сервера (json-server)
-      const handleDeleteBook = async (id: number) => {
-        try {
-          await fetch(`${apiUrl}/books/${id}`, {
-            method: "DELETE",
-          });
-      
-          setBooks((prevBooks) => prevBooks.filter((book) => book._id || book.id !== id));
-          setReadingList((prevList) => prevList.filter((book) => book._id || book.id !== id));
-      
-          localStorage.setItem(
-            "readingList",
-            JSON.stringify(readingList.filter((book) => book._id || book.id !== id))
-          );
-        } catch (error) {
-          console.error("❌ Помилка при видаленні книги:", error);
-        }
-      };
-      
-      
-
+      await deleteBook(id);
   
       // Оновлення списку книг
-      setBooks((prevBooks) => prevBooks.filter((book) => book._id || book.id !== id));
+      setBooks((prevBooks) =>
+        prevBooks.filter((book) => (book._id || String(book.id)) !== id)
+      );
   
       // Оновлення списку для читання
-      setReadingList((prevList) => prevList.filter((book) => book._id || book.id !== id));
+      setReadingList((prevList) =>
+        prevList.filter((book) => (book._id || String(book.id)) !== id)
+      );
   
       // Оновлення localStorage
       localStorage.setItem(
         "readingList",
-        JSON.stringify(readingList.filter((book) => book._id || book.id !== id))
+        JSON.stringify(
+          readingList.filter((book) => (book._id || String(book.id)) !== id)
+        )
       );
     } catch (error) {
       console.error("❌ Помилка під час видалення книги:", error);
     }
   };
-
+  
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {

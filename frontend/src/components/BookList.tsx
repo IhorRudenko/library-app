@@ -9,7 +9,7 @@ interface BookListProps {
   searchTerm: string;
   viewMode: "list" | "grid";
   readingList: Book[];
-  onDeleteBook: (id: number) => void;
+  onDeleteBook: (id: string) => void;
 }
 
 const BookList: React.FC<BookListProps> = ({
@@ -21,10 +21,12 @@ const BookList: React.FC<BookListProps> = ({
   readingList,
   onDeleteBook,
 }) => {
-  const [showDescriptionId, setShowDescriptionId] = useState<number | null>(null);
+  const [showDescriptionId, setShowDescriptionId] = useState<string | null>(null);
 
-  const isFavorite = (bookId: number | string | undefined): boolean => {
-    return readingList.some((book) => book._id === bookId || book._id || book.id === bookId);
+  const isFavorite = (bookId: string | undefined): boolean => {
+    return readingList.some(
+      (book) => (book._id || book.id?.toString()) === bookId
+    );
   };
 
   const filteredBooks = books.filter((book) => {
@@ -38,10 +40,10 @@ const BookList: React.FC<BookListProps> = ({
   const groupedBooks: Record<string, Book[]> = {};
   filteredBooks.forEach((book) => {
     const genres = book.genre
-  ? Array.isArray(book.genre)
-    ? book.genre
-    : book.genre.split(",").map((g) => g.trim())
-  : [];
+      ? Array.isArray(book.genre)
+        ? book.genre
+        : book.genre.split(",").map((g) => g.trim())
+      : [];
 
     genres.forEach((genre) => {
       if (!groupedBooks[genre]) {
@@ -69,16 +71,15 @@ const BookList: React.FC<BookListProps> = ({
             <img className="list__deco-img" src="/images/book-deco.png" alt="Deco" />
 
             {booksInGenre.map((book) => {
-              const bookId = Number(book._id || book._id || book.id);
-              if (isNaN(bookId)) return null;
+              const bookId = (book._id || book.id)?.toString();
+              if (!bookId) return null;
 
               return (
                 <li
-                  key={(book._id || book._id || book.id) ?? Math.random()}
-
-                  className={`list__item ${showDescriptionId === bookId ? "active" : ""} ${
-                    isFavorite(bookId) ? "favorite-added" : ""
-                  }`}
+                  key={bookId}
+                  className={`list__item ${
+                    showDescriptionId === bookId ? "active" : ""
+                  } ${isFavorite(bookId) ? "favorite-added" : ""}`}
                   onClick={() =>
                     setShowDescriptionId((prev) => (prev === bookId ? null : bookId))
                   }
