@@ -66,5 +66,5 @@ app.delete("/api/books/:id", async (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`✅ Сервер працює на http://localhost:${PORT}`);
+  console.log(`✅ Сервер працює на порті ${PORT}`);
 });
