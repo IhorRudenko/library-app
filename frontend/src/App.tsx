@@ -31,16 +31,15 @@ const App: React.FC = () => {
 
   const [books, setBooks] = useState<Book[]>([]);
 
-  const [readingList, setReadingList] = useState<BookWithStatus[]>(() => {
-    const storedList = localStorage.getItem("readingList");
-    if (!storedList) return [];
-    try {
-      return JSON.parse(storedList);
-    } catch {
-      return [];
-    }
-  });
+   // Стан обраного (читального) списку
+   const [readingList, setReadingList] = useState<BookWithStatus[]>([]);
 
+   // Типи
+    interface BookWithStatus extends Book {
+      read: boolean;
+    }
+
+   
   useEffect(() => {
     const stored = localStorage.getItem("readingList");
     if (stored) {
@@ -49,6 +48,7 @@ const App: React.FC = () => {
     }
   }, []);
 
+  
  
 
   const fetchBooks = async () => {
@@ -293,13 +293,13 @@ const data = await response.json();
           {/* -- ReadingList ---------------------------------------------- */}
     
           {activeTab === "readingList" && (
-          <ReadingList
-            readingList={readingList}
-            toggleReadStatus={toggleReadStatus}
-            removeFromReadingList={removeFromReadingList}
-            viewMode={viewMode}
-            setViewMode={setViewMode}
-          />
+            <ReadingList
+              readingList={readingList}
+              toggleReadStatus={toggleReadStatus}
+              removeFromReadingList={removeFromReadingList}
+              viewMode={viewMode}
+              setViewMode={setViewMode}
+            />
           )}
         </div>
       </div>

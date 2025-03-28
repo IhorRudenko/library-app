@@ -16,3 +16,7 @@ export interface BookWithStatus extends Book {
 export interface BookWithStatus extends Book {
   read: boolean;
 }
+
+export interface BookWithStatus extends Book {
+  read: boolean;
+}

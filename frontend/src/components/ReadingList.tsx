@@ -3,13 +3,13 @@ import ViewToggle from "./ViewToggle";
 import "../css/ReadingList.css";
 import { BookWithStatus } from "../types/types";
 
-type ReadingListProps = {
+interface ReadingListProps {
   readingList: BookWithStatus[];
   toggleReadStatus: (id: number) => void;
   removeFromReadingList: (id: number) => void;
   viewMode: "list" | "grid";
-  setViewMode: (mode: "list" | "grid") => void;
-};
+  setViewMode: React.Dispatch<React.SetStateAction<"list" | "grid">>;
+}
 
 const ReadingList: React.FC<ReadingListProps> = ({
   readingList,
