@@ -1,11 +1,12 @@
 export type Book = {
-  id: number;
+  _id?: string; // MongoDB ID
+  id?: number; // Локальний ID (можеш залишити на всяк випадок)
   title: string;
   author: string;
   year: number;
-  image: string;
-  description: string;
-  genre: string | string[]; // ← це важливо!
+  description?: string;
+  image?: string;
+  genre?: string | string[]; // на випадок genre.split()
 };
 
 

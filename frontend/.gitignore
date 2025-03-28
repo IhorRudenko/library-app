@@ -48,7 +48,7 @@ yarn-error.log*
          return (
            <li
              className={`list__item ${showDescriptionId === book.id ? "active" : ""} ${isFavorite ? "favorite-added" : ""}`}
-             key={book.id}
+             key={book._id || book.id}
              onClick={() =>
                setShowDescriptionId((prev) => (prev === book.id ? null : book.id))
              }
@@ -84,7 +84,7 @@ yarn-error.log*
                  className="list__item-btn list__item-delete"
                  onClick={(e) => {
                    e.stopPropagation();
-                   handleDelete(book.id);
+                   handleDelete(book._id || book.id);
                  }}
                >
                  <img className="list__item-garbage" src="/images/delete.png" alt="Garbage" />

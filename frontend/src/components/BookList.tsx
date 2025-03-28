@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { Book } from "../types/types";
 import "../css/BookList.css";
 
-const apiUrl = process.env.REACT_APP_API_URL;
-
-
 interface BookListProps {
   books: Book[];
   setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
@@ -22,12 +19,12 @@ const BookList: React.FC<BookListProps> = ({
   searchTerm,
   viewMode,
   readingList,
-  onDeleteBook
+  onDeleteBook,
 }) => {
-  const [openBookId, setOpenBookId] = React.useState<number | null>(null);
+  const [showDescriptionId, setShowDescriptionId] = useState<number | null>(null);
 
-  const handleToggleDescription = (bookId: number) => {
-    setOpenBookId(prevId => (prevId === bookId ? null : bookId));
+  const isFavorite = (bookId: number | string | undefined): boolean => {
+    return readingList.some((book) => book._id === bookId || book.id === bookId);
   };
 
   const filteredBooks = books.filter((book) => {
@@ -39,38 +36,22 @@ const BookList: React.FC<BookListProps> = ({
   });
 
   const groupedBooks: Record<string, Book[]> = {};
-filteredBooks.forEach((book) => {
-  const genres = Array.isArray(book.genre)
-    ? book.genre
-    : book.genre.split(",").map((g) => g.trim());
+  filteredBooks.forEach((book) => {
+    const genres = Array.isArray(book.genre)
+      ? book.genre
+      : (book.genre || "").split(",").map((g) => g.trim());
 
-  genres.forEach((genre) => {
-    if (!groupedBooks[genre]) {
-      groupedBooks[genre] = [];
-    }
-    groupedBooks[genre].push(book);
+    genres.forEach((genre) => {
+      if (!groupedBooks[genre]) {
+        groupedBooks[genre] = [];
+      }
+      groupedBooks[genre].push(book);
+    });
   });
-});
-
-// === 2. Отримуємо жанри у порядку популярності ===
-const sortedGenres = Object.entries(groupedBooks)
-  .sort(([, booksA], [, booksB]) => booksB.length - booksA.length) // Сортуємо за довжиною масивів
-  .map(([genre]) => genre); // Беремо тільки назви жанрів
-
-  const [showDescriptionId, setShowDescriptionId] = useState<number | null>(null);
-
-  const isFavorite = (bookId: number): boolean => {
-    return readingList.some((book) => book.id === bookId);
-  };
-
-  const handleDelete = (bookId: number) => {
-    setBooks((prevBooks) => prevBooks.filter((book) => book.id !== bookId));
-  };
 
   const sortedGenreEntries = Object.entries(groupedBooks).sort(
-    ([, booksA], [, booksB]) => booksB.length - booksA.length
+    ([, a], [, b]) => b.length - a.length
   );
-
 
   return (
     <div className={`book-list ${viewMode}`}>
@@ -78,76 +59,78 @@ const sortedGenres = Object.entries(groupedBooks)
         <div key={genre} className="genre-group">
           <h2 className="genre-title">{genre}</h2>
 
-         <ul className={`list__body ${viewMode === "grid" ? "card-view" : "list-view"}`}>
-           
-            {/* <p className={`list__negativ ${filteredBooks.length === 0 ? "active" : ""}`}>
-              keine Ergebnisse gefunden
-            </p> */}
+          <ul className={`list__body ${viewMode === "grid" ? "card-view" : "list-view"}`}>
+            {filteredBooks.length === 0 && (
+              <p className="list__negativ active">keine Ergebnisse gefunden</p>
+            )}
 
             <img className="list__deco-img" src="/images/book-deco.png" alt="Deco" />
 
-            {booksInGenre.map((book) => (          
-                          
-              <li 
-                className={`list__item ${showDescriptionId === book.id ? "active" : ""} ${isFavorite(book.id) ? "favorite-added" : ""}`}
-                  key={book.id}
+            {booksInGenre.map((book) => {
+              const bookId = Number(book._id || book.id);
+              if (isNaN(bookId)) return null;
+
+              return (
+                <li
+                  key={bookId}
+                  className={`list__item ${showDescriptionId === bookId ? "active" : ""} ${
+                    isFavorite(bookId) ? "favorite-added" : ""
+                  }`}
                   onClick={() =>
-                    setShowDescriptionId((prev) => (prev === book.id ? null : book.id))
+                    setShowDescriptionId((prev) => (prev === bookId ? null : bookId))
                   }
                 >
-                
-                <div className="list__item-inner">
-                  {book.title} - {book.author} ({book.year})
-                </div>
+                  <div className="list__item-inner">
+                    {book.title} - {book.author} ({book.year})
+                  </div>
 
-                <div className="list__item-poster">
-                  <img
-                    className="list__item-img"
-                    src={book.image || "/images/books/placeholder.png"}
-                    onError={(e) => {
-                      e.currentTarget.src = "/images/books/placeholder.png";
-                    }}
-                    alt={book.title}
-                  />
-                </div>
+                  <div className="list__item-poster">
+                    <img
+                      className="list__item-img"
+                      src={book.image || "/images/books/placeholder.png"}
+                      onError={(e) => {
+                        e.currentTarget.src = "/images/books/placeholder.png";
+                      }}
+                      alt={book.title}
+                    />
+                  </div>
 
-                <div className="list__item-controls">
-                  <button
-                    className={`list__item-btn list__item-favorit ${isFavorite(book.id) ? "favorite-added" : ""}`}
+                  <div className="list__item-controls">
+                    <button
+                      className={`list__item-btn list__item-favorit ${
+                        isFavorite(bookId) ? "favorite-added" : ""
+                      }`}
                       onClick={(e) => {
-                        e.stopPropagation(); // щоб не відкривався опис
+                        e.stopPropagation();
                         addToReadingList(book);
                       }}
                     >
-                    <img className="list__item-star" src="/images/star.png" alt="Star" />
-                    
-                    <span>
-                      {isFavorite(book.id) ? "hinzugefügt" : "zu Favoriten"}
-                    </span> 
-                  </button>
+                      <img className="list__item-star" src="/images/star.png" alt="Star" />
+                      <span>{isFavorite(bookId) ? "hinzugefügt" : "zu Favoriten"}</span>
+                    </button>
 
-                  <button
-                    className={`list__item-btn list__item-delete ${isFavorite(book.id) ? "favorite-added" : ""}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onDeleteBook(book.id);
-                    }}
+                    <button
+                      className={`list__item-btn list__item-delete ${
+                        isFavorite(bookId) ? "favorite-added" : ""
+                      }`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onDeleteBook(bookId);
+                      }}
                     >
-                    <img className="list__item-garbage" src="/images/delete.png" alt="Garbage" />
-                    
-                    <span>löschen</span>
-                  
-                  </button>
-                </div>
+                      <img className="list__item-garbage" src="/images/delete.png" alt="Garbage" />
+                      <span>löschen</span>
+                    </button>
+                  </div>
 
-                {showDescriptionId === book.id && (
-                  <p className={`book-description ${showDescriptionId === book.id ? "active" : ""}`}>
-                    {book.description || "Keine Beschreibung verfügbar."}
-                  </p>
-                )}
-               
-              </li>
-            ))}
+                  {showDescriptionId === bookId && (
+                    <p className="book-description active">
+                      {book.description || "Keine Beschreibung verfügbar."}
+                    </p>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
       ))}
