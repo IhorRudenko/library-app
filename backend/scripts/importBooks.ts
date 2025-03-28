@@ -23,7 +23,7 @@ async function importBooks() {
     await mongoose.connect(mongoURI);
     console.log("✅ Підключено до MongoDB");
 
-    const filePath = path.join(__dirname, "../books.json");
+    const filePath = path.resolve(__dirname, "../books.json");
     const rawData = fs.readFileSync(filePath, "utf-8");
     const books = JSON.parse(rawData);
 
@@ -31,7 +31,13 @@ async function importBooks() {
       throw new Error("📛 books.json має бути масивом");
     }
 
-    await Book.insertMany(books);
+    const formattedBooks = books.map((book) => ({
+      ...book,
+      genre: Array.isArray(book.genre) ? book.genre[0] : book.genre, // беремо тільки перший жанр
+    }));
+    
+    await Book.insertMany(formattedBooks);
+
     console.log(`📚 Імпортовано ${books.length} книг`);
   } catch (error) {
     console.error("❌ Помилка імпорту:", error);
