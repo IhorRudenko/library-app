@@ -8,14 +8,16 @@ dotenv.config();
 
 const app = express();
 
+// 🔥 Ставимо CORS до всього решти
 app.use(cors({
-  origin: ["http://localhost:3000", "https://your-production-frontend.com"], // додай свій фронтенд
+  origin: "*", // ⬅ тимчасово дозволяємо всі (або localhost:3000)
   methods: ["GET", "POST", "DELETE"],
-  credentials: true
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
+// 🔥 Додаткові заголовки на всякий випадок
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*"); // або конкретне джерело
+  res.header("Access-Control-Allow-Origin", "*"); // або твій фронт
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   next();
