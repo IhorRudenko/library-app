@@ -3,6 +3,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import fs from "fs";
 import dotenv from "dotenv";
+import path from "path";
 
 dotenv.config();
 
@@ -11,7 +12,7 @@ app.use(express.json({ limit: "15mb" }));
 app.use(cors());
 app.use(bodyParser.json({ limit: "5mb" }));
 
-const booksFile = "books.json"; // Файл для збереження книг
+const booksFile = path.join(__dirname, "books.json");
 
 // 📌 Функція для завантаження книг з файлу (якщо файл є)
 const loadBooks = (): any[] => {
