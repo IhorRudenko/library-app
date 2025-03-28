@@ -43,14 +43,14 @@ yarn-error.log*
        <img className="list__deco-img" src="/images/book-deco.png" alt="Deco" />
 
        {books.map((book) => {
-         const isFavorite = readingList.some((fav) => fav.id === book.id);
+         const isFavorite = readingList.some((fav) => fav.id === book._id || book.id);
 
          return (
            <li
-             className={`list__item ${showDescriptionId === book.id ? "active" : ""} ${isFavorite ? "favorite-added" : ""}`}
-             key={book._id || book.id}
+             className={`list__item ${showDescriptionId === book._id || book.id ? "active" : ""} ${isFavorite ? "favorite-added" : ""}`}
+             key={book._id || book._id || book.id}
              onClick={() =>
-               setShowDescriptionId((prev) => (prev === book.id ? null : book.id))
+               setShowDescriptionId((prev) => (prev === book._id || book.id ? null : book._id || book.id))
              }
            >
              <div className="list__item-inner">
@@ -84,7 +84,7 @@ yarn-error.log*
                  className="list__item-btn list__item-delete"
                  onClick={(e) => {
                    e.stopPropagation();
-                   handleDelete(book._id || book.id);
+                   handleDelete(book._id || book._id || book.id);
                  }}
                >
                  <img className="list__item-garbage" src="/images/delete.png" alt="Garbage" />
@@ -92,8 +92,8 @@ yarn-error.log*
                </button>
              </div>
 
-             {showDescriptionId === book.id && (
-               <p className={`book-description ${showDescriptionId === book.id ? "active" : ""}`}>
+             {showDescriptionId === book._id || book.id && (
+               <p className={`book-description ${showDescriptionId === book._id || book.id ? "active" : ""}`}>
                  {book.description || "Keine Beschreibung verfügbar."}
                </p>
              )}

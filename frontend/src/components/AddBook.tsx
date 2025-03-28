@@ -51,7 +51,7 @@ const AddBook: React.FC<AddBookProps> = ({ books, setBooks }) => {
       year: Number(year),
       description,
       image: imageData,
-      genre, 
+      genre: Array.isArray(genre) ? genre.join(", ") : genre,
     };
 
      

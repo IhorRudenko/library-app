@@ -24,7 +24,7 @@ const BookList: React.FC<BookListProps> = ({
   const [showDescriptionId, setShowDescriptionId] = useState<number | null>(null);
 
   const isFavorite = (bookId: number | string | undefined): boolean => {
-    return readingList.some((book) => book._id === bookId || book.id === bookId);
+    return readingList.some((book) => book._id === bookId || book._id || book.id === bookId);
   };
 
   const filteredBooks = books.filter((book) => {
@@ -37,9 +37,11 @@ const BookList: React.FC<BookListProps> = ({
 
   const groupedBooks: Record<string, Book[]> = {};
   filteredBooks.forEach((book) => {
-    const genres = Array.isArray(book.genre)
-      ? book.genre
-      : (book.genre || "").split(",").map((g) => g.trim());
+    const genres = book.genre
+  ? Array.isArray(book.genre)
+    ? book.genre
+    : book.genre.split(",").map((g) => g.trim())
+  : [];
 
     genres.forEach((genre) => {
       if (!groupedBooks[genre]) {
@@ -67,12 +69,13 @@ const BookList: React.FC<BookListProps> = ({
             <img className="list__deco-img" src="/images/book-deco.png" alt="Deco" />
 
             {booksInGenre.map((book) => {
-              const bookId = Number(book._id || book.id);
+              const bookId = Number(book._id || book._id || book.id);
               if (isNaN(bookId)) return null;
 
               return (
                 <li
-                  key={bookId}
+                  key={(book._id || book._id || book.id) ?? Math.random()}
+
                   className={`list__item ${showDescriptionId === bookId ? "active" : ""} ${
                     isFavorite(bookId) ? "favorite-added" : ""
                   }`}

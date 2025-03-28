@@ -7,8 +7,20 @@ import mongoose from "mongoose";
 dotenv.config();
 
 const app = express();
-// app.use(cors());
-app.options("*", cors());
+
+app.use(cors({
+  origin: ["http://localhost:3000", "https://your-production-frontend.com"], // додай свій фронтенд
+  methods: ["GET", "POST", "DELETE"],
+  credentials: true
+}));
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*"); // або конкретне джерело
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  next();
+});
+
 app.use(bodyParser.json({ limit: "10mb" }));
 app.use(express.json({ limit: "10mb" }));
 

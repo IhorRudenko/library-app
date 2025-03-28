@@ -32,7 +32,7 @@ const ReadingList: React.FC<ReadingListProps> = ({
       ) : (
         <ul className={`list__body ${viewMode === "grid" ? "card-view" : "list-view"}`}>
           {readingList.map((book) => {
-            const bookId = Number(book._id || book.id);
+            const bookId = Number(book._id || book._id || book.id);
             if (isNaN(bookId)) return null;
 
             return (

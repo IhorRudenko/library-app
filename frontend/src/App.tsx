@@ -58,9 +58,9 @@ const data = await response.json();
 
   const toggleReadingList = (book: Book) => {
     setReadingList((prevList) => {
-      const isAlreadyAdded = prevList.some((b) => b.id === book.id);
+      const isAlreadyAdded = prevList.some((b) => b.id === book._id || book.id);
       if (isAlreadyAdded) {
-        return prevList.filter((b) => b.id !== book.id);
+        return prevList.filter((b) => b.id !== book._id || book.id);
       } else {
         return [...prevList, { ...book, read: false }]; // додаємо з read
       }
@@ -70,12 +70,12 @@ const data = await response.json();
   
   const toggleReadStatus = (id: number) => {
     setReadingList(readingList.map(book =>
-      book.id === id ? { ...book, read: !book.read } : book
+      book._id || book.id === id ? { ...book, read: !book.read } : book
     ));
   };
   
   const removeFromReadingList = (id: number) => {
-    setReadingList(readingList.filter(book => book.id !== id));
+    setReadingList(readingList.filter(book => book._id || book.id !== id));
   };
 
   const [activeTab, setActiveTab] = useState<"all" | "readingList">("all");
@@ -112,12 +112,12 @@ const data = await response.json();
             method: "DELETE",
           });
       
-          setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
-          setReadingList((prevList) => prevList.filter((book) => book.id !== id));
+          setBooks((prevBooks) => prevBooks.filter((book) => book._id || book.id !== id));
+          setReadingList((prevList) => prevList.filter((book) => book._id || book.id !== id));
       
           localStorage.setItem(
             "readingList",
-            JSON.stringify(readingList.filter((book) => book.id !== id))
+            JSON.stringify(readingList.filter((book) => book._id || book.id !== id))
           );
         } catch (error) {
           console.error("❌ Помилка при видаленні книги:", error);
@@ -128,15 +128,15 @@ const data = await response.json();
 
   
       // Оновлення списку книг
-      setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
+      setBooks((prevBooks) => prevBooks.filter((book) => book._id || book.id !== id));
   
       // Оновлення списку для читання
-      setReadingList((prevList) => prevList.filter((book) => book.id !== id));
+      setReadingList((prevList) => prevList.filter((book) => book._id || book.id !== id));
   
       // Оновлення localStorage
       localStorage.setItem(
         "readingList",
-        JSON.stringify(readingList.filter((book) => book.id !== id))
+        JSON.stringify(readingList.filter((book) => book._id || book.id !== id))
       );
     } catch (error) {
       console.error("❌ Помилка під час видалення книги:", error);
