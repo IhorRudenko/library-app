@@ -1,67 +1,65 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import fs from "fs";
 import dotenv from "dotenv";
-import path from "path";
+import mongoose from "mongoose";
 
 dotenv.config();
 
 const app = express();
-app.use(express.json({ limit: "15mb" }));
 app.use(cors());
-app.use(bodyParser.json({ limit: "5mb" }));
+app.use(bodyParser.json({ limit: "10mb" }));
+app.use(express.json({ limit: "10mb" }));
 
-const booksFile = path.join(__dirname, "books.json");
+// 🔌 Підключення до MongoDB Atlas
+const mongoURI = process.env.MONGODB_URI || "mongodb+srv://Ihor:oc2vi73f3@cluster0.tkykq8y.mongodb.net/library?retryWrites=true&w=majority&appName=Cluster0";
 
-// 📌 Функція для завантаження книг з файлу (якщо файл є)
-const loadBooks = (): any[] => {
-  try {
-    if (!fs.existsSync(booksFile)) {
-      fs.writeFileSync(booksFile, "[]", "utf-8"); // ✅ Створюємо файл, якщо його немає
-    }
-    const data = fs.readFileSync(booksFile, "utf-8");
-    return JSON.parse(data);
-  } catch (error) {
-    console.error("❌ Помилка читання books.json:", error);
-    return [];
-  }
-};
+mongoose
+  .connect(mongoURI)
+  .then(() => console.log("✅ Підключено до MongoDB"))
+  .catch((err) => console.error("❌ Помилка MongoDB:", err));
 
-// 📌 Функція для запису книг у файл
-const saveBooks = (books: any[]) => {
-  try {
-    fs.writeFileSync(booksFile, JSON.stringify(books, null, 2), "utf-8"); // ✅ Записуємо у файл
-  } catch (error) {
-    console.error("❌ Помилка запису у books.json:", error);
-  }
-};
+// 📘 Модель книги
+const bookSchema = new mongoose.Schema({
+  title: String,
+  author: String,
+  year: Number,
+  description: String,
+  image: String,
+  genre: String,
+});
 
-let books = loadBooks(); // ✅ Завантажуємо книги при старті сервера
-
+const Book = mongoose.model("Book", bookSchema);
 
 // 📌 Отримати всі книги
-app.get("/api/books", (req, res) => {
-  books = loadBooks(); // ✅ Оновлюємо книги перед відправкою
-  res.json(books);
+app.get("/api/books", async (req, res) => {
+  try {
+    const books = await Book.find();
+    res.json(books);
+  } catch (err) {
+    res.status(500).json({ error: "Помилка отримання книг" });
+  }
 });
 
 // 📌 Додати нову книгу
-app.post("/books", (req, res) => {
-  books = loadBooks(); // ✅ Оновлюємо список перед додаванням
-  const newBook = { id: Date.now(), ...req.body };
-  books.push(newBook);
-  saveBooks(books); // ✅ Записуємо у файл
-  res.status(201).json(newBook);
+app.post("/api/books", async (req, res) => {
+  try {
+    const newBook = new Book(req.body);
+    const saved = await newBook.save();
+    res.status(201).json(saved);
+  } catch (err) {
+    res.status(500).json({ error: "Помилка при додаванні книги" });
+  }
 });
 
 // 📌 Видалити книгу за ID
-app.delete("/books/:id", (req, res) => {
-  books = loadBooks(); // ✅ Оновлюємо список перед видаленням
-  const bookId = parseInt(req.params.id);
-  books = books.filter((book) => book.id !== bookId);
-  saveBooks(books); // ✅ Записуємо оновлений список у файл
-  res.json({ message: "✅ Книга видалена" });
+app.delete("/api/books/:id", async (req, res) => {
+  try {
+    await Book.findByIdAndDelete(req.params.id);
+    res.json({ message: "✅ Книга видалена" });
+  } catch (err) {
+    res.status(500).json({ error: "Помилка при видаленні" });
+  }
 });
 
 // 📌 Запуск сервера

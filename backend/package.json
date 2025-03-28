@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.7",
-    "json-server": "^0.17.4"
+    "json-server": "^0.17.4",
+    "mongoose": "^8.13.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
