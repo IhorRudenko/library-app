@@ -7,7 +7,8 @@ import mongoose from "mongoose";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+// app.use(cors());
+app.options("*", cors());
 app.use(bodyParser.json({ limit: "10mb" }));
 app.use(express.json({ limit: "10mb" }));
 
@@ -44,10 +45,13 @@ app.get("/api/books", async (req, res) => {
 // 📌 Додати нову книгу
 app.post("/api/books", async (req, res) => {
   try {
+    console.log("📥 Дані з форми:", req.body); // Додай сюди
+
     const newBook = new Book(req.body);
     const saved = await newBook.save();
     res.status(201).json(saved);
   } catch (err) {
+    console.error("❌ Помилка при додаванні:", err); // І лог помилки
     res.status(500).json({ error: "Помилка при додаванні книги" });
   }
 });
